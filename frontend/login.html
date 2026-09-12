@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Sahayatri</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🌿 Sahayatri
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">Home</a>
+
+            <a href="explore.html">Explore</a>
+
+            <a href="my-trips.html">My Trips</a>
+
+        </div>
+
+    </nav>
+
+
+    <div class="login-container">
+
+        <div class="login-card">
+
+            <h1>Welcome Back 👋</h1>
+
+            <p class="login-subtitle">
+                Login to continue your journey with Sahayatri
+            </p>
+
+
+            <form id="loginForm">
+
+                <div class="input-box">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <label>Password</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+                <button type="submit" class="login-submit">
+                    Login
+                </button>
+
+            </form>
+
+
+            <p class="signup-text">
+
+                Don't have an account?
+
+                <a href="signup.html">
+                    Sign Up
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+document
+    .getElementById("loginForm")
+    .addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        const password =
+            document.getElementById("password").value;
+
+        try {
+
+            const response = await fetch(
+                "http://localhost:8080/api/auth/login",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+
+                alert(
+                    data.error ||
+                    "Login failed ❌"
+                );
+
+                return;
+            }
+
+            // Save logged-in user
+            localStorage.setItem(
+                "loggedInUser",
+                data.email
+            );
+
+            localStorage.setItem(
+                "userName",
+                data.name
+            );
+
+            alert(
+                "Login successful! 🎉"
+            );
+
+            window.location.href =
+                "index.html";
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            alert(
+                "Unable to connect to Sahayatri server. " +
+                "Please make sure backend is running."
+            );
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>

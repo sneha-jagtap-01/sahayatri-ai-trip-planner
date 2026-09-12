@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Sahayatri | My AI Trip</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+
+    <style>
+
+        /* =========================================
+           NAVBAR
+           ========================================= */
+
+        .dashboard-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .dashboard-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .dashboard-links > a {
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* =========================================
+           PROFILE
+           ========================================= */
+
+        .profile {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .profile-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            min-width: 105px;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .profile-avatar,
+        .profile-avatar-img {
+            width: 38px;
+            height: 38px;
+            min-width: 38px;
+            min-height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .profile-avatar {
+            background: #e8f5ec;
+            font-size: 21px;
+        }
+
+        .profile-avatar-img {
+            border: 2px solid #ffffff;
+        }
+
+        /* Navbar madhe fakt first name */
+
+        .profile-name {
+            white-space: nowrap;
+            max-width: 65px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* =========================================
+           PROFILE DROPDOWN
+           ========================================= */
+
+        .profile-menu {
+            position: absolute;
+            top: calc(100% + 12px);
+            right: 0;
+            z-index: 9999;
+            min-width: 280px;
+        }
+
+        .profile-big-avatar,
+        .profile-big-avatar-img {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            min-height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .profile-big-avatar {
+            background: #e8f5ec;
+            font-size: 25px;
+        }
+
+        .profile-big-avatar-img {
+            border: 2px solid #e5f5ea;
+        }
+
+        /* =========================================
+           MOBILE DASHBOARD NAVBAR
+           ========================================= */
+
+        @media (max-width: 800px) {
+
+            .dashboard-nav {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 14px !important;
+                padding: 14px 12px !important;
+            }
+
+            .dashboard-logo {
+                width: 100% !important;
+                text-align: center !important;
+            }
+
+            .dashboard-links {
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: wrap !important;
+                justify-content: center !important;
+                align-items: center !important;
+                gap: 10px 16px !important;
+                width: 100% !important;
+            }
+
+            .dashboard-links > a {
+                display: inline-block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                white-space: nowrap !important;
+                font-size: 14px !important;
+            }
+
+            .profile {
+                display: block !important;
+                visibility: visible !important;
+                flex-shrink: 0 !important;
+            }
+
+            .profile-btn {
+                display: flex !important;
+                min-width: auto !important;
+                padding: 7px 10px !important;
+                gap: 6px !important;
+            }
+
+            .profile-name {
+                display: inline-block !important;
+                max-width: 60px !important;
+            }
+
+            .profile-menu {
+                right: 0 !important;
+                top: calc(100% + 8px) !important;
+                min-width: 250px !important;
+            }
+        }
+
+        /* ===== MOBILE NAVBAR FINAL FIX ===== */
+
+@media (max-width: 800px) {
+
+    .dashboard-nav {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 12px !important;
+        padding: 14px 10px !important;
+    }
+
+    .dashboard-logo {
+        width: 100% !important;
+        text-align: center !important;
+        display: block !important;
+    }
+
+    .dashboard-links {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px 14px !important;
+    }
+
+    /* HOME / MY TRIPS / EXPLORE */
+    .dashboard-links > a {
+        display: inline-block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: static !important;
+        width: auto !important;
+        height: auto !important;
+        font-size: 14px !important;
+        white-space: nowrap !important;
+    }
+
+    /* PROFILE */
+    .profile {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        width: auto !important;
+    }
+
+    .profile-btn {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        min-width: 0 !important;
+        width: auto !important;
+        padding: 6px 9px !important;
+        gap: 5px !important;
+    }
+
+    .profile-name {
+        display: inline-block !important;
+        visibility: visible !important;
+        max-width: 65px !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+    }
+
+    /* PROFILE DROPDOWN */
+    .profile-menu {
+        display: none;
+        position: absolute !important;
+        right: 0 !important;
+        top: calc(100% + 8px) !important;
+        min-width: 250px !important;
+        z-index: 99999 !important;
+    }
+
+    .profile-menu.show {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .profile-option {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .logout-btn {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100% !important;
+    }
+}
+
+
+/* VERY SMALL MOBILE */
+@media (max-width: 420px) {
+
+    .dashboard-links {
+        gap: 7px 10px !important;
+    }
+
+    .dashboard-links > a {
+        font-size: 13px !important;
+    }
+
+    .profile-btn {
+        font-size: 13px !important;
+        padding: 5px 7px !important;
+    }
+
+    .profile-avatar,
+    .profile-avatar-img {
+        width: 32px !important;
+        height: 32px !important;
+        min-width: 32px !important;
+        min-height: 32px !important;
+    }
+}
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVBAR
+         ========================================= -->
+
+    <nav class="dashboard-nav">
+
+        <div class="dashboard-logo">
+            🌿 Sahayatri
+        </div>
+
+        <div class="dashboard-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="my-trips.html">
+                My Trips
+            </a>
+
+            <a href="explore.html">
+                Explore
+            </a>
+
+            <!-- PROFILE -->
+
+            <div class="profile" id="profile">
+
+                <button
+                    class="profile-btn"
+                    id="profile-btn"
+                    type="button">
+
+                    <!-- Default Avatar -->
+
+                    <div
+                        id="nav-profile-avatar"
+                        class="profile-avatar">
+
+                        👤
+
+                    </div>
+
+                    <!-- Uploaded Photo -->
+
+                    <img
+                        id="nav-profile-photo"
+                        class="profile-avatar-img"
+                        alt="Profile"
+                        style="display:none;">
+
+                    <!-- First Name -->
+
+                    <span
+                        class="profile-name"
+                        id="profile-name">
+
+                        Guest
+
+                    </span>
+
+                    <span class="profile-arrow">
+                        ⌄
+                    </span>
+
+                </button>
+
+
+                <!-- PROFILE DROPDOWN -->
+
+                <div
+                    class="profile-menu"
+                    id="profile-menu">
+
+                    <div class="profile-user">
+
+                        <!-- Default Big Avatar -->
+
+                        <div
+                            id="dropdown-profile-avatar"
+                            class="profile-big-avatar">
+
+                            👤
+
+                        </div>
+
+                        <!-- Uploaded Big Photo -->
+
+                        <img
+                            id="dropdown-profile-photo"
+                            class="profile-big-avatar-img"
+                            alt="Profile"
+                            style="display:none;">
+
+                        <div>
+
+                            <strong
+                                id="profile-full-name">
+
+                                Guest User
+
+                            </strong>
+
+                            <small
+                                id="profile-email">
+
+                                Not logged in
+
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="profile-divider">
+                    </div>
+
+                    <!-- MY PROFILE -->
+
+                    <a
+                        href="profile.html"
+                        class="profile-option">
+
+                        👤 My Profile
+
+                    </a>
+
+                    <!-- LOGOUT -->
+
+                    <button
+                        class="logout-btn"
+                        id="logout-btn"
+                        type="button">
+
+                        🚪 Logout
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================================
+         MAIN CONTENT
+         ========================================= -->
+
+    <main class="dashboard">
+
+
+        <!-- HEADER -->
+
+        <section class="trip-header">
+
+            <div>
+
+                <p class="small-title">
+                    YOUR PERSONALIZED TRIP
+                </p>
+
+                <h1 id="trip-title">
+                    Your Trip ✨
+                </h1>
+
+                <p
+                    class="trip-description"
+                    id="trip-description">
+                </p>
+
+            </div>
+
+            <div
+                class="trip-info"
+                id="trip-info">
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             MAIN GRID
+             ========================================= -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- ITINERARY -->
+
+            <div class="itinerary-card">
+
+                <div class="card-title">
+
+                    <h2>
+                        🗓️ Day-wise Itinerary
+                    </h2>
+
+                    <span>
+                        AI Generated
+                    </span>
+
+                </div>
+
+                <div id="itinerary-container">
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT COLUMN -->
+
+            <div class="right-column">
+
+
+                <!-- MAP -->
+
+                <div class="info-card map-card">
+
+                    <div class="map-header">
+
+                        <div>
+
+                            <h2>
+                                🗺️ Route Map
+                            </h2>
+
+                            <p>
+                                Your personalized travel route
+                            </p>
+
+                        </div>
+
+                        <span class="route-badge">
+                            LIVE ROUTE
+                        </span>
+
+                    </div>
+
+                    <div class="map-box">
+
+                        <iframe
+                            id="google-map"
+                            loading="lazy"
+                            allowfullscreen
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+
+                    </div>
+
+                    <div class="route-title">
+                        📍 Your Route
+                    </div>
+
+                    <div
+                        class="map-route"
+                        id="map-route">
+                    </div>
+
+                </div>
+
+
+                <!-- BUDGET -->
+
+                <div class="info-card">
+
+                    <h2>
+                        💰 Budget Estimate
+                    </h2>
+
+                    <div
+                        class="budget-total"
+                        id="budget-total">
+
+                        ₹0
+
+                        <small>
+                            of ₹0
+                        </small>
+
+                    </div>
+
+                    <div class="budget-bar">
+                        <div></div>
+                    </div>
+
+                    <div class="budget-row">
+
+                        <span>
+                            🏨 Accommodation
+                        </span>
+
+                        <strong
+                            id="accommodation-cost">
+
+                            ₹0
+
+                        </strong>
+
+                    </div>
+
+                    <div class="budget-row">
+
+                        <span>
+                            🍛 Food
+                        </span>
+
+                        <strong
+                            id="food-cost">
+
+                            ₹0
+
+                        </strong>
+
+                    </div>
+
+                    <div class="budget-row">
+
+                        <span>
+                            🚗 Transport
+                        </span>
+
+                        <strong
+                            id="transport-cost">
+
+                            ₹0
+
+                        </strong>
+
+                    </div>
+
+                    <div class="budget-row">
+
+                        <span>
+                            🎟️ Activities
+                        </span>
+
+                        <strong
+                            id="activity-cost">
+
+                            ₹0
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SAFETY -->
+
+                <div class="info-card safety-card">
+
+                    <h2>
+                        🛡️ Safety Score
+                    </h2>
+
+                    <div
+                        class="safety-score"
+                        id="safety-score">
+
+                        8.5 / 10
+
+                    </div>
+
+                    <p>
+                        ✓ Low-risk destination
+                    </p>
+
+                    <p>
+                        ✓ Emergency services nearby
+                    </p>
+
+                    <p>
+                        ✓ Suitable for travel
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             LOCAL FOOD
+             ========================================= -->
+
+        <section class="food-section">
+
+            <h2>
+                🍛 Local Food Recommendations
+            </h2>
+
+            <div class="food-container">
+
+                <div class="food-card">
+
+                    <div class="food-image">
+                        🍛
+                    </div>
+
+                    <h3 id="food1-name">
+                        Local Food
+                    </h3>
+
+                    <p id="food1-description">
+                        Local specialty
+                    </p>
+
+                </div>
+
+
+                <div class="food-card">
+
+                    <div class="food-image">
+                        🍽️
+                    </div>
+
+                    <h3 id="food2-name">
+                        Local Food
+                    </h3>
+
+                    <p id="food2-description">
+                        Local specialty
+                    </p>
+
+                </div>
+
+
+                <div class="food-card">
+
+                    <div class="food-image">
+                        🥘
+                    </div>
+
+                    <h3 id="food3-name">
+                        Local Food
+                    </h3>
+
+                    <p id="food3-description">
+                        Local specialty
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             AI EXPLANATION
+             ========================================= -->
+
+        <section class="ai-reason">
+
+            <h2>
+                🤖 Why did Sahayatri choose this trip?
+            </h2>
+
+            <p id="ai-explanation">
+            </p>
+
+        </section>
+
+
+        <!-- =========================================
+             AI TRAVEL TIPS
+             ========================================= -->
+
+        <section class="ai-tips">
+
+            <h2>
+                🤖 AI Travel Tips
+            </h2>
+
+            <p class="ai-tips-subtitle">
+
+                Smart suggestions from Sahayatri
+                for a smoother journey.
+
+            </p>
+
+            <div id="ai-tips-container">
+
+                <p>
+                    Preparing your personalized
+                    travel tips...
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             ACTION BUTTONS
+             ========================================= -->
+
+        <div class="dashboard-actions">
+
+            <button id="regenerate-btn">
+                ✨ Regenerate Trip
+            </button>
+
+            <button id="export-btn">
+                📄 Export PDF
+            </button>
+
+            <button id="save-btn">
+                ❤️ Save Trip
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+         ========================================= -->
+
+    <script>
+
+        /* =========================================
+           GET TRIP DATA
+           ========================================= */
+
+        const tripData =
+            JSON.parse(
+                localStorage.getItem("tripResponse")
+            );
+
+        const preferences =
+            JSON.parse(
+                localStorage.getItem("tripPreferences")
+            ) || [];
+
+
+        if (!tripData) {
+
+            alert(
+                "Trip data not found. Please generate your trip again."
+            );
+
+            window.location.href =
+                "index.html";
+
+        } else {
+
+            /* =========================================
+               HEADER
+               ========================================= */
+
+            document.getElementById("trip-title").innerText =
+                `Your ${tripData.mood} Trip ✨`;
+
+            document.getElementById("trip-info").innerHTML =
+                `<span>🌿 ${tripData.mood}</span>
+                 <span>📅 ${tripData.days} Days</span>
+                 <span>💰 ₹${tripData.budget}</span>`;
+
+            document.getElementById("trip-description").innerText =
+                `A personalized ${tripData.days}-day trip starting from ${tripData.location}.`;
+
+
+            /* =========================================
+               ITINERARY
+               ========================================= */
+
+            const itineraryContainer =
+                document.getElementById(
+                    "itinerary-container"
+                );
+
+            itineraryContainer.innerHTML = "";
+
+            if (
+                tripData.itinerary &&
+                tripData.itinerary.length > 0
+            ) {
+
+                tripData.itinerary.forEach(
+                    function(day) {
+
+                        const dayCard =
+                            document.createElement("div");
+
+                        dayCard.className =
+                            "day";
+
+                        let activitiesHTML = "";
+
+                        if (
+                            day.activities &&
+                            day.activities.length > 0
+                        ) {
+
+                            day.activities.forEach(
+                                function(activity) {
+
+                                    activitiesHTML += `
+
+                                        <div class="activity">
+
+                                            <strong>
+                                                ${activity.time || ""}
+                                            </strong>
+
+                                            <p>
+                                                ${activity.name || "Free Time"}
+                                            </p>
+
+                                            <small>
+                                                ${activity.description || ""}
+                                            </small>
+
+                                            ${
+                                                activity.address
+                                                ? `<div class="activity-address">
+                                                    📍 ${activity.address}
+                                                   </div>`
+                                                : ""
+                                            }
+
+                                            ${
+                                                activity.mapsUri
+                                                ? `<a
+                                                    href="${activity.mapsUri}"
+                                                    target="_blank"
+                                                    class="maps-link">
+                                                    🗺️ View on Google Maps
+                                                   </a>`
+                                                : ""
+                                            }
+
+                                        </div>
+
+                                    `;
+                                }
+                            );
+
+                        }
+
+                        dayCard.innerHTML = `
+
+                            <div class="day-heading">
+
+                                <h3>
+                                    ${day.day} — ${day.location}
+                                </h3>
+
+                                <span>
+                                    🌿
+                                </span>
+
+                            </div>
+
+                            ${activitiesHTML}
+
+                        `;
+
+                        itineraryContainer.appendChild(
+                            dayCard
+                        );
+
+                    }
+                );
+
+            } else {
+
+                itineraryContainer.innerHTML =
+                    "<p>No itinerary available.</p>";
+
+            }
+
+
+            /* =========================================
+               REAL ROUTE
+               ========================================= */
+
+            const routeContainer =
+                document.getElementById(
+                    "map-route"
+                );
+
+            routeContainer.innerHTML = "";
+
+            if (
+                tripData.route &&
+                tripData.route.length > 0
+            ) {
+
+                tripData.route.forEach(
+                    function(place, index) {
+
+                        const routeItem =
+                            document.createElement(
+                                "span"
+                            );
+
+                        routeItem.innerHTML =
+                            `📍 ${place}`;
+
+                        routeContainer.appendChild(
+                            routeItem
+                        );
+
+                        if (
+                            index <
+                            tripData.route.length - 1
+                        ) {
+
+                            const arrow =
+                                document.createElement(
+                                    "span"
+                                );
+
+                            arrow.innerHTML =
+                                " → ";
+
+                            routeContainer.appendChild(
+                                arrow
+                            );
+
+                        }
+
+                    }
+                );
+
+            } else {
+
+                routeContainer.innerHTML =
+                    `📍 ${tripData.location}`;
+
+            }
+
+
+            /* =========================================
+               GOOGLE MAP
+               ========================================= */
+
+            const googleMap =
+                document.getElementById(
+                    "google-map"
+                );
+
+            if (
+                tripData.mapUrl &&
+                tripData.mapUrl !== ""
+            ) {
+
+                googleMap.src =
+                    tripData.mapUrl;
+
+            } else {
+
+                googleMap.style.display =
+                    "none";
+
+            }
+
+
+            /* =========================================
+               BUDGET
+               ========================================= */
+
+            const totalBudget =
+                Number(tripData.budget);
+
+            document.getElementById(
+                "budget-total"
+            ).innerHTML =
+                `₹${totalBudget}
+                 <small>of ₹${totalBudget}</small>`;
+
+            if (tripData.budgetEstimate) {
+
+                document.getElementById(
+                    "accommodation-cost"
+                ).innerText =
+                    `₹${tripData.budgetEstimate.accommodation}`;
+
+                document.getElementById(
+                    "food-cost"
+                ).innerText =
+                    `₹${tripData.budgetEstimate.food}`;
+
+                document.getElementById(
+                    "transport-cost"
+                ).innerText =
+                    `₹${tripData.budgetEstimate.transport}`;
+
+                document.getElementById(
+                    "activity-cost"
+                ).innerText =
+                    `₹${tripData.budgetEstimate.activities}`;
+
+            }
+
+
+            /* =========================================
+               SAFETY SCORE
+               ========================================= */
+
+            if (
+                tripData.safetyScore !== undefined
+            ) {
+
+                document.getElementById(
+                    "safety-score"
+                ).innerText =
+                    `${tripData.safetyScore} / 10`;
+
+            }
+
+
+            /* =========================================
+               FOOD
+               ========================================= */
+
+            if (
+                tripData.localFood &&
+                tripData.localFood.length > 0
+            ) {
+
+                const foods =
+                    tripData.localFood;
+
+                function getFoodName(food) {
+
+                    if (
+                        food.displayName &&
+                        food.displayName.text
+                    ) {
+
+                        return food.displayName.text;
+
+                    }
+
+                    return "Local Restaurant";
+
+                }
+
+                function getFoodDescription(food) {
+
+                    if (
+                        food.formattedAddress
+                    ) {
+
+                        return food.formattedAddress;
+
+                    }
+
+                    return "Popular restaurant near your trip location.";
+
+                }
+
+                if (foods[0]) {
+
+                    document.getElementById(
+                        "food1-name"
+                    ).innerText =
+                        getFoodName(foods[0]);
+
+                    document.getElementById(
+                        "food1-description"
+                    ).innerText =
+                        getFoodDescription(foods[0]);
+
+                }
+
+                if (foods[1]) {
+
+                    document.getElementById(
+                        "food2-name"
+                    ).innerText =
+                        getFoodName(foods[1]);
+
+                    document.getElementById(
+                        "food2-description"
+                    ).innerText =
+                        getFoodDescription(foods[1]);
+
+                }
+
+                if (foods[2]) {
+
+                    document.getElementById(
+                        "food3-name"
+                    ).innerText =
+                        getFoodName(foods[2]);
+
+                    document.getElementById(
+                        "food3-description"
+                    ).innerText =
+                        getFoodDescription(foods[2]);
+
+                }
+
+            }
+
+
+            /* =========================================
+               AI EXPLANATION
+               ========================================= */
+
+            if (tripData.aiExplanation) {
+
+                document.getElementById(
+                    "ai-explanation"
+                ).innerText =
+                    tripData.aiExplanation;
+
+            } else {
+
+                const preferencesText =
+                    preferences.length > 0
+                        ? preferences.join(", ")
+                        : "your selected preferences";
+
+                document.getElementById(
+                    "ai-explanation"
+                ).innerText =
+                    `Based on your ${tripData.mood} mood, ₹${tripData.budget} budget, ` +
+                    `${tripData.days}-day duration and interest in ${preferencesText}, ` +
+                    `Sahayatri created a personalized trip starting from ${tripData.location}.`;
+
+            }
+
+        }
+
+
+        /* =========================================
+           AI TRAVEL TIPS
+           ========================================= */
+
+        const aiTipsContainer =
+            document.getElementById(
+                "ai-tips-container"
+            );
+
+        if (tripData && tripData.aiTips) {
+
+            const tipsText =
+                tripData.aiTips.trim();
+
+            const tips =
+                tipsText
+                    .split("\n")
+                    .map(
+                        function(tip) {
+
+                            return tip
+                                .replace(
+                                    /^[-*•]\s*/,
+                                    ""
+                                )
+                                .trim();
+
+                        }
+                    )
+                    .filter(
+                        function(tip) {
+
+                            return tip.length > 0;
+
+                        }
+                    );
+
+            if (tips.length > 0) {
+
+                aiTipsContainer.innerHTML = "";
+
+                tips.forEach(
+                    function(tip, index) {
+
+                        const tipCard =
+                            document.createElement(
+                                "div"
+                            );
+
+                        tipCard.className =
+                            "ai-tip-card";
+
+                        tipCard.innerHTML = `
+
+                            <div class="tip-number">
+                                ${index + 1}
+                            </div>
+
+                            <p>
+                                ${tip}
+                            </p>
+
+                        `;
+
+                        aiTipsContainer.appendChild(
+                            tipCard
+                        );
+
+                    }
+                );
+
+            } else {
+
+                aiTipsContainer.innerHTML =
+                    `<p>${tipsText}</p>`;
+
+            }
+
+        } else {
+
+            aiTipsContainer.innerHTML = `
+
+                <p>
+
+                    Start early, keep some budget
+                    for unexpected expenses,
+                    and check local conditions
+                    before travelling.
+
+                </p>
+
+            `;
+
+        }
+
+
+        /* =========================================
+           REGENERATE TRIP
+           ========================================= */
+
+        const regenerateButton =
+            document.getElementById(
+                "regenerate-btn"
+            );
+
+        regenerateButton.addEventListener(
+            "click",
+            function() {
+
+                const location =
+                    localStorage.getItem(
+                        "tripLocation"
+                    );
+
+                const days =
+                    localStorage.getItem(
+                        "tripDays"
+                    );
+
+                const budget =
+                    localStorage.getItem(
+                        "tripBudget"
+                    );
+
+                const mood =
+                    localStorage.getItem(
+                        "tripMood"
+                    );
+
+                const savedPreferences =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "tripPreferences"
+                        )
+                    ) || [];
+
+                if (
+                    !location ||
+                    !days ||
+                    !budget ||
+                    !mood
+                ) {
+
+                    alert(
+                        "Trip information not found. Please generate a new trip."
+                    );
+
+                    window.location.href =
+                        "index.html";
+
+                    return;
+
+                }
+
+                regenerateButton.innerText =
+                    "⏳ Regenerating...";
+
+                regenerateButton.disabled =
+                    true;
+
+                const refresh =
+                    Date.now();
+
+                const preferencesText =
+                    savedPreferences.join(",");
+
+                const apiUrl =
+                    `http://localhost:8080/api/trip` +
+                    `?location=${encodeURIComponent(location)}` +
+                    `&days=${days}` +
+                    `&budget=${budget}` +
+                    `&mood=${encodeURIComponent(mood)}` +
+                    `&preferences=${encodeURIComponent(preferencesText)}` +
+                    `&refresh=${refresh}`;
+
+                console.log(
+                    "Regenerating trip:",
+                    apiUrl
+                );
+
+                fetch(apiUrl)
+
+                    .then(
+                        function(response) {
+
+                            if (!response.ok) {
+
+                                throw new Error(
+                                    "Backend API error"
+                                );
+
+                            }
+
+                            return response.json();
+
+                        }
+                    )
+
+                    .then(
+                        function(data) {
+
+                            console.log(
+                                "New Trip Response:",
+                                data
+                            );
+
+                            localStorage.setItem(
+                                "tripResponse",
+                                JSON.stringify(data)
+                            );
+
+                            window.location.reload();
+
+                        }
+                    )
+
+                    .catch(
+                        function(error) {
+
+                            console.error(
+                                "Regenerate Error:",
+                                error
+                            );
+
+                            alert(
+                                "Unable to regenerate trip. " +
+                                "Please make sure the backend is running."
+                            );
+
+                            regenerateButton.innerText =
+                                "✨ Regenerate Trip";
+
+                            regenerateButton.disabled =
+                                false;
+
+                        }
+                    );
+
+            }
+        );
+
+
+        /* =========================================
+           SAVE TRIP TO DATABASE
+           ========================================= */
+
+        const saveButton =
+            document.getElementById(
+                "save-btn"
+            );
+
+        saveButton.addEventListener(
+            "click",
+            async function() {
+
+                const currentTrip =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "tripResponse"
+                        )
+                    );
+
+                if (!currentTrip) {
+
+                    alert(
+                        "No trip available to save."
+                    );
+
+                    return;
+
+                }
+
+                const email =
+                    localStorage.getItem(
+                        "loggedInUser"
+                    );
+
+                if (!email) {
+
+                    alert(
+                        "Please login first to save your trip. 🔐"
+                    );
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+                saveButton.disabled =
+                    true;
+
+                saveButton.innerText =
+                    "⏳ Saving...";
+
+                try {
+
+                    const response =
+                        await fetch(
+                            "http://localhost:8080/api/trips/save",
+                            {
+
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body:
+                                    JSON.stringify({
+
+                                        email: email,
+
+                                        location:
+                                            currentTrip.location,
+
+                                        mood:
+                                            currentTrip.mood,
+
+                                        days:
+                                            Number(
+                                                currentTrip.days
+                                            ),
+
+                                        budget:
+                                            Number(
+                                                currentTrip.budget
+                                            ),
+
+                                        tripData:
+                                            JSON.stringify(
+                                                currentTrip
+                                            )
+
+                                    })
+
+                            }
+                        );
+
+                    const data =
+                        await response.json();
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            data.error ||
+                            "Unable to save trip"
+                        );
+
+                    }
+
+                    saveButton.innerText =
+                        "❤️ Trip Saved";
+
+                    /* Save database trip ID for Budget Splitter */
+                    if (data.id) {
+                        localStorage.setItem(
+                            "savedTripId",
+                            data.id
+                        );
+
+                        console.log(
+                            "Saved Trip ID:",
+                            data.id
+                        );
+                    }
+
+                    alert(
+                        "Your trip has been saved successfully! ❤️"
+                    );
+
+                } catch (error) {
+
+                    console.error(
+                        "Save Trip Error:",
+                        error
+                    );
+
+                    alert(
+                        "Unable to save trip. " +
+                        "Please make sure backend is running."
+                    );
+
+                    saveButton.disabled =
+                        false;
+
+                    saveButton.innerText =
+                        "❤️ Save Trip";
+
+                }
+
+            }
+        );
+
+
+        /* =========================================
+           EXPORT TRIP AS PDF
+           ========================================= */
+
+        const exportButton =
+            document.getElementById(
+                "export-btn"
+            );
+
+        exportButton.addEventListener(
+            "click",
+            function() {
+
+                const tripData =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "tripResponse"
+                        )
+                    );
+
+                if (!tripData) {
+
+                    alert(
+                        "Trip data not found. Please generate your trip again."
+                    );
+
+                    return;
+
+                }
+
+                document.body.classList.add(
+                    "printing"
+                );
+
+                window.print();
+
+                setTimeout(
+                    function() {
+
+                        document.body.classList.remove(
+                            "printing"
+                        );
+
+                    },
+                    1000
+                );
+
+            }
+        );
+
+
+        /* =========================================
+           USER PROFILE
+           ========================================= */
+
+        const loggedInEmail =
+            localStorage.getItem(
+                "loggedInUser"
+            );
+
+        const loggedInName =
+            localStorage.getItem(
+                "userName"
+            );
+
+        const profileName =
+            document.getElementById(
+                "profile-name"
+            );
+
+        const profileFullName =
+            document.getElementById(
+                "profile-full-name"
+            );
+
+        const profileEmail =
+            document.getElementById(
+                "profile-email"
+            );
+
+
+        if (loggedInEmail) {
+
+            const displayName =
+                loggedInName ||
+                loggedInEmail.split("@")[0];
+
+            /* Navbar = First Name */
+
+            const shortName =
+                displayName.split(" ")[0];
+
+            profileName.innerText =
+                shortName;
+
+            /* Dropdown = Full Name */
+
+            profileFullName.innerText =
+                displayName;
+
+            profileEmail.innerText =
+                loggedInEmail;
+
+        } else {
+
+            profileName.innerText =
+                "Guest";
+
+            profileFullName.innerText =
+                "Guest User";
+
+            profileEmail.innerText =
+                "Not logged in";
+
+        }
+
+
+        /* =========================================
+           OPEN / CLOSE PROFILE MENU
+           ========================================= */
+
+        const profileButton =
+            document.getElementById(
+                "profile-btn"
+            );
+
+        const profileMenu =
+            document.getElementById(
+                "profile-menu"
+            );
+
+        profileButton.addEventListener(
+            "click",
+            function(event) {
+
+                event.stopPropagation();
+
+                profileMenu.classList.toggle(
+                    "show"
+                );
+
+            }
+        );
+
+
+        /* Close menu outside */
+
+        document.addEventListener(
+            "click",
+            function() {
+
+                profileMenu.classList.remove(
+                    "show"
+                );
+
+            }
+        );
+
+
+        /* =========================================
+           LOGOUT
+           ========================================= */
+
+        document.getElementById(
+            "logout-btn"
+        ).addEventListener(
+            "click",
+            function() {
+
+                localStorage.removeItem(
+                    "loggedInUser"
+                );
+
+                localStorage.removeItem(
+                    "userName"
+                );
+
+                alert(
+                    "Logged out successfully 👋"
+                );
+
+                window.location.href =
+                    "index.html";
+
+            }
+        );
+
+
+        /* =========================================
+           LOAD PROFILE PHOTO
+           ========================================= */
+
+        const savedProfilePhoto =
+            localStorage.getItem(
+                "profilePhoto"
+            );
+
+        const navProfilePhoto =
+            document.getElementById(
+                "nav-profile-photo"
+            );
+
+        const navProfileAvatar =
+            document.getElementById(
+                "nav-profile-avatar"
+            );
+
+        const dropdownProfilePhoto =
+            document.getElementById(
+                "dropdown-profile-photo"
+            );
+
+        const dropdownProfileAvatar =
+            document.getElementById(
+                "dropdown-profile-avatar"
+            );
+
+
+        if (savedProfilePhoto) {
+
+            /* Navbar photo */
+
+            if (navProfilePhoto) {
+
+                navProfilePhoto.src =
+                    savedProfilePhoto;
+
+                navProfilePhoto.style.display =
+                    "flex";
+
+            }
+
+            if (navProfileAvatar) {
+
+                navProfileAvatar.style.display =
+                    "none";
+
+            }
+
+
+            /* Dropdown photo */
+
+            if (dropdownProfilePhoto) {
+
+                dropdownProfilePhoto.src =
+                    savedProfilePhoto;
+
+                dropdownProfilePhoto.style.display =
+                    "flex";
+
+            }
+
+            if (dropdownProfileAvatar) {
+
+                dropdownProfileAvatar.style.display =
+                    "none";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

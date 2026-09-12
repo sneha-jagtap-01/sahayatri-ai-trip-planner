@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign Up | Sahayatri</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🌿 Sahayatri
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">Home</a>
+
+            <a href="explore.html">Explore</a>
+
+            <a href="my-trips.html">My Trips</a>
+
+        </div>
+
+    </nav>
+
+
+    <div class="login-container">
+
+        <div class="login-card">
+
+            <h1>Create Account ✨</h1>
+
+            <p class="login-subtitle">
+                Start planning your perfect journey with Sahayatri
+            </p>
+
+
+            <form id="signupForm">
+
+                <div class="input-box">
+
+                    <label>Full Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <label>Password</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Create a password"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <label>Confirm Password</label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirm your password"
+                        required
+                    >
+
+                </div>
+
+
+                <button type="submit" class="login-submit">
+                    Create Account
+                </button>
+
+            </form>
+
+
+            <p class="signup-text">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+document
+    .getElementById("signupForm")
+    .addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+        const name =
+            document.getElementById("name").value.trim();
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        const password =
+            document.getElementById("password").value;
+
+        const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+
+        // Password check
+        if (password !== confirmPassword) {
+
+            alert("Passwords do not match ❌");
+
+            return;
+        }
+
+
+        try {
+
+            const response = await fetch(
+                "http://localhost:8080/api/auth/signup",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        password: password
+                    })
+                }
+            );
+
+
+            const data = await response.json();
+
+
+            if (!response.ok) {
+
+                alert(
+                    data.error ||
+                    "Signup failed ❌"
+                );
+
+                return;
+            }
+
+
+            alert(
+                "Account created successfully! 🎉"
+            );
+
+
+            // Go to Login
+            window.location.href =
+                "login.html";
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            alert(
+                "Unable to connect to Sahayatri server. " +
+                "Please make sure backend is running."
+            );
+
+        }
+
+    });
+
+</script>
+
+</body>
+
+</html>

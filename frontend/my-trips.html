@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Sahayatri | My Trips</title>
+
+    <link rel="stylesheet"
+        href="dashboard.css">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="dashboard-nav">
+
+        <div class="dashboard-logo">
+            🌿 Sahayatri
+        </div>
+
+        <div class="dashboard-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="my-trips.html">
+                My Trips
+            </a>
+
+            <a href="explore.html">
+                Explore
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN -->
+
+    <main class="dashboard">
+
+        <section class="trip-header">
+
+            <div>
+
+                <p class="small-title">
+                    YOUR TRAVEL COLLECTION
+                </p>
+
+                <h1>
+                    My Trips ❤️
+                </h1>
+
+                <p class="trip-description">
+                    Your saved Sahayatri travel plans.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- SAVED TRIPS -->
+
+        <section>
+
+            <div id="saved-trips-container">
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        const container =
+            document.getElementById(
+                "saved-trips-container"
+            );
+
+
+        // ==========================================
+        // LOAD SAVED TRIPS FROM DATABASE
+        // ==========================================
+
+        async function loadTrips() {
+
+            const email =
+                localStorage.getItem("loggedInUser");
+
+
+            // User not logged in
+
+            if (!email) {
+
+                container.innerHTML = `
+
+                    <div class="info-card">
+
+                        <h2>
+                            🔐 Please Login
+                        </h2>
+
+                        <p>
+                            Login to view your saved trips.
+                        </p>
+
+                        <br>
+
+                        <a href="login.html">
+                            Login to Sahayatri
+                        </a>
+
+                    </div>
+
+                `;
+
+                return;
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "http://localhost:8080/api/trips/user/" +
+                        encodeURIComponent(email)
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Unable to load trips"
+                    );
+
+                }
+
+
+                const trips =
+                    await response.json();
+
+
+                // ==========================================
+                // NO TRIPS
+                // ==========================================
+
+                if (trips.length === 0) {
+
+                    container.innerHTML = `
+
+                        <div class="info-card">
+
+                            <h2>
+                                🌿 No saved trips yet
+                            </h2>
+
+                            <p>
+                                Generate your first trip
+                                with Sahayatri and save it here.
+                            </p>
+
+                            <br>
+
+                            <a href="index.html">
+                                ✨ Create New Trip
+                            </a>
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                // Clear old content
+
+                container.innerHTML = "";
+
+
+                // Latest trip first
+
+                trips
+                    .slice()
+                    .reverse()
+                    .forEach(function(trip) {
+
+
+                        // Get original trip data
+
+                        let tripData = {};
+
+                        try {
+
+                            tripData =
+                                JSON.parse(
+                                    trip.tripData
+                                );
+
+                        } catch (error) {
+
+                            console.log(
+                                "Trip data parse error",
+                                error
+                            );
+
+                        }
+
+
+                        // Route
+
+                        let routeText =
+                            "Route unavailable";
+
+
+                        if (
+                            tripData.route &&
+                            tripData.route.length
+                        ) {
+
+                            routeText =
+                                tripData.route
+                                    .slice(0, 3)
+                                    .join(" → ");
+
+                        }
+
+
+                        // Card
+
+                        const card =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        card.className =
+                            "info-card";
+
+
+                        card.style.marginBottom =
+                            "20px";
+
+
+                        card.innerHTML = `
+
+                            <h2>
+                                🌿 ${trip.location}
+                            </h2>
+
+                            <p>
+                                ✨ ${trip.mood} Trip
+                            </p>
+
+                            <p>
+                                📅 ${trip.days} Days
+                            </p>
+
+                            <p>
+                                💰 ₹${trip.budget}
+                            </p>
+
+                            <p>
+                                📍 ${routeText}
+                            </p>
+
+                            <br>
+
+                            <button
+                                onclick="viewTrip(${trip.id})">
+
+                                👀 View Trip
+
+                            </button>
+
+                            <button
+                                onclick="deleteTrip(${trip.id})">
+
+                                🗑️ Delete
+
+                            </button>
+
+                        `;
+
+
+                        container.appendChild(
+                            card
+                        );
+
+                    });
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Load Trips Error:",
+                    error
+                );
+
+
+                container.innerHTML = `
+
+                    <div class="info-card">
+
+                        <h2>
+                            ⚠️ Unable to load trips
+                        </h2>
+
+                        <p>
+                            Please make sure the
+                            Sahayatri backend is running.
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        // ==========================================
+        // VIEW TRIP
+        // ==========================================
+
+        async function viewTrip(id) {
+
+            try {
+
+                const email =
+                    localStorage.getItem(
+                        "loggedInUser"
+                    );
+
+
+                const response =
+                    await fetch(
+                        "http://localhost:8080/api/trips/user/" +
+                        encodeURIComponent(email)
+                    );
+
+
+                const trips =
+                    await response.json();
+
+
+                const selectedTrip =
+                    trips.find(function(trip) {
+
+                        return trip.id === id;
+
+                    });
+
+
+                if (!selectedTrip) {
+
+                    alert(
+                        "Trip not found."
+                    );
+
+                    return;
+
+                }
+
+
+                // Restore trip data
+                
+
+                // Save current trip ID for Budget Splitter
+
+                localStorage.setItem(
+                    "savedTripId",
+                    String(selectedTrip.id)
+                );
+
+                localStorage.setItem(
+                    "tripResponse",
+                    selectedTrip.tripData
+                );
+
+
+                localStorage.setItem(
+                    "tripLocation",
+                    selectedTrip.location
+                );
+
+
+                localStorage.setItem(
+                    "tripMood",
+                    selectedTrip.mood
+                );
+
+
+                localStorage.setItem(
+                    "tripDays",
+                    selectedTrip.days
+                );
+
+
+                localStorage.setItem(
+                    "tripBudget",
+                    selectedTrip.budget
+                );
+
+
+                // Open dashboard
+
+                window.location.href =
+                    "dashboard.html";
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "View Trip Error:",
+                    error
+                );
+
+
+                alert(
+                    "Unable to open this trip."
+                );
+
+            }
+
+        }
+
+
+        // ==========================================
+        // DELETE TRIP
+        // ==========================================
+
+        async function deleteTrip(id) {
+
+            const confirmDelete =
+                confirm(
+                    "Do you want to delete this trip?"
+                );
+
+
+            if (!confirmDelete) {
+
+                return;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "http://localhost:8080/api/trips/" +
+                        id,
+                        {
+                            method: "DELETE"
+                        }
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Delete failed"
+                    );
+
+                }
+
+
+                alert(
+                    "Trip deleted successfully! 🗑️"
+                );
+
+
+                // Reload trips
+
+                loadTrips();
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Delete Trip Error:",
+                    error
+                );
+
+
+                alert(
+                    "Unable to delete trip."
+                );
+
+            }
+
+        }
+
+
+        // ==========================================
+        // START
+        // ==========================================
+
+        loadTrips();
+
+    </script>
+
+</body>
+
+</html>

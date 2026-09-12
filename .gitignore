@@ -1,0 +1,18 @@
+# Backend secrets
+backend/sahayatri-backend/src/main/resources/application.properties
+
+# Build files
+**/build/
+**/.gradle/
+
+# IntelliJ
+**/.idea/
+**/*.iml
+**/out/
+
+# VS Code
+**/.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db

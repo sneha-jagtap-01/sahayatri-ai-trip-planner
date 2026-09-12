@@ -1,0 +1,2128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+
+    background:
+        linear-gradient(
+            rgba(230, 247, 246, 0.85),
+            rgba(245, 250, 249, 0.95)
+        );
+
+    color: #173c3c;
+}
+
+
+/* NAVBAR */
+
+.dashboard-nav {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 18px 6%;
+
+    background: rgba(255,255,255,0.85);
+
+    border-bottom: 1px solid #d5e5e3;
+}
+
+.dashboard-logo {
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    color: #087f7b;
+}
+
+.dashboard-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+}
+
+.dashboard-links a {
+
+    text-decoration: none;
+
+    color: #234848;
+
+    font-weight: 600;
+}
+
+.profile {
+
+    width: 40px;
+
+    height: 40px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #20b8b1;
+
+    color: white;
+
+    font-weight: bold;
+}
+
+
+/* DASHBOARD */
+
+.dashboard {
+
+    width: 90%;
+
+    max-width: 1300px;
+
+    margin: 40px auto;
+}
+
+
+/* HEADER */
+
+.trip-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 30px;
+}
+
+.small-title {
+
+    color: #159b96;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+.trip-header h1 {
+
+    font-size: 38px;
+
+    margin: 8px 0;
+}
+
+.trip-description {
+
+    color: #587070;
+}
+
+.trip-info {
+
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+.trip-info span {
+
+    padding: 10px 16px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    border: 1px solid #d5e5e3;
+}
+
+
+/* GRID */
+
+.dashboard-grid {
+
+    display: grid;
+
+    grid-template-columns: 1.7fr 1fr;
+
+    gap: 25px;
+}
+
+
+/* CARDS */
+
+.itinerary-card,
+.info-card,
+.food-section,
+.ai-reason {
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+
+    border: 1px solid #e0eeee;
+}
+
+
+/* ITINERARY */
+
+.card-title {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.card-title span {
+
+    background: #d9f5f2;
+
+    color: #07817d;
+
+    padding: 7px 12px;
+
+    border-radius: 15px;
+
+    font-size: 13px;
+}
+
+.day {
+
+    padding: 20px 0;
+
+    border-bottom: 1px solid #e2eeee;
+}
+
+.day:last-child {
+
+    border-bottom: none;
+}
+
+.day-heading {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+}
+
+.activity {
+
+    display: flex;
+
+    gap: 20px;
+
+    padding: 10px 0;
+}
+
+.activity strong {
+
+    min-width: 80px;
+
+    color: #079691;
+}
+
+.activity p {
+
+    color: #526b6b;
+}
+
+
+/* RIGHT COLUMN */
+
+.right-column {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.info-card h2 {
+
+    margin-bottom: 20px;
+}
+
+
+/* MAP */
+
+.map-box {
+
+    min-height: 180px;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d8eeee,
+            #edf7f6
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.map-route {
+
+    display: flex;
+
+    gap: 10px;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    font-weight: bold;
+}
+
+
+/* BUDGET */
+
+.budget-total {
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    color: #087f7b;
+}
+
+.budget-total small {
+
+    font-size: 14px;
+
+    color: #758686;
+}
+
+.budget-bar {
+
+    height: 10px;
+
+    background: #dceceb;
+
+    border-radius: 10px;
+
+    margin: 15px 0 20px;
+
+    overflow: hidden;
+}
+
+.budget-bar div {
+
+    width: 68%;
+
+    height: 100%;
+
+    background: #18aaa5;
+
+    border-radius: 10px;
+}
+
+.budget-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 8px 0;
+
+    color: #536b6b;
+}
+
+
+/* SAFETY */
+
+.safety-score {
+
+    font-size: 32px;
+
+    font-weight: bold;
+
+    color: #168d55;
+
+    margin-bottom: 15px;
+}
+
+.safety-card p {
+
+    margin: 8px 0;
+
+    color: #526b6b;
+}
+
+
+/* FOOD */
+
+.food-section {
+
+    margin-top: 25px;
+}
+
+.food-section h2 {
+
+    margin-bottom: 20px;
+}
+
+.food-container {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.food-card {
+
+    border: 1px solid #e0eeee;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    padding-bottom: 15px;
+}
+
+.food-image {
+
+    height: 130px;
+
+    background: #e3f1ef;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 60px;
+}
+
+.food-card h3,
+.food-card p {
+
+    margin-left: 15px;
+
+    margin-right: 15px;
+}
+
+.food-card h3 {
+
+    margin-top: 12px;
+}
+
+.food-card p {
+
+    margin-top: 6px;
+
+    color: #687c7c;
+
+    font-size: 14px;
+}
+
+
+/* AI REASON */
+
+.ai-reason {
+
+    margin-top: 25px;
+
+    background: #eaf9f7;
+}
+
+.ai-reason h2 {
+
+    margin-bottom: 12px;
+}
+
+.ai-reason p {
+
+    line-height: 1.7;
+
+    color: #526b6b;
+}
+
+
+/* BUTTONS */
+
+.dashboard-actions {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin: 30px 0;
+}
+
+.dashboard-actions button {
+
+    padding: 13px 22px;
+
+    border: 1px solid #1aa9a3;
+
+    border-radius: 25px;
+
+    background: white;
+
+    color: #087f7b;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.dashboard-actions button:hover {
+
+    background: #dff6f4;
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width: 900px) {
+
+    .dashboard-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .trip-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .food-container {
+
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 600px) {
+
+    .dashboard-links a {
+
+        display: none;
+    }
+
+    .dashboard {
+
+        width: 94%;
+    }
+
+    .trip-header h1 {
+
+        font-size: 30px;
+    }
+
+    .activity {
+
+        flex-direction: column;
+
+        gap: 4px;
+    }
+
+    .dashboard-actions {
+
+        flex-direction: column;
+    }
+}
+
+/* ==========================================
+   PDF / PRINT STYLING
+========================================== */
+
+@media print {
+
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    .dashboard-nav {
+        display: none !important;
+    }
+
+    .dashboard-actions {
+        display: none !important;
+    }
+
+    .small-title {
+        color: black !important;
+    }
+
+    .trip-header,
+    .itinerary-card,
+    .info-card,
+    .food-section,
+    .ai-reason {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+        break-inside: avoid;
+    }
+
+    .dashboard-grid {
+        display: block !important;
+    }
+
+    .right-column {
+        display: block !important;
+    }
+
+    .info-card {
+        margin-bottom: 20px;
+    }
+
+    .map-box {
+        display: none !important;
+    }
+
+    .map-route {
+        display: block !important;
+    }
+
+    .activity {
+        break-inside: avoid;
+    }
+
+    .food-section {
+        break-before: auto;
+    }
+
+    .ai-reason {
+        break-inside: avoid;
+    }
+
+    a {
+        color: black !important;
+        text-decoration: none !important;
+    }
+
+    @page {
+        size: A4;
+        margin: 15mm;
+    }
+}
+
+
+/* ==========================================
+   AI TRAVEL TIPS
+========================================== */
+
+.ai-tips {
+
+    margin-top: 30px;
+    padding: 28px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+
+.ai-tips h2 {
+
+    margin-bottom: 8px;
+
+}
+
+
+.ai-tips-subtitle {
+
+    color: #777;
+
+    margin-bottom: 20px;
+
+}
+
+
+#ai-tips-container {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 15px;
+
+}
+
+
+.ai-tip-card {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 14px;
+
+    padding: 18px;
+
+    background: #f7faf7;
+
+    border-radius: 14px;
+
+    border: 1px solid #e5eee5;
+
+}
+
+
+.tip-number {
+
+    min-width: 32px;
+
+    height: 32px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e8f5e9;
+
+    font-weight: bold;
+
+}
+
+
+.ai-tip-card p {
+
+    margin: 0;
+
+    line-height: 1.6;
+
+    color: #444;
+
+}
+
+@media (max-width: 768px) {
+
+    #ai-tips-container {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+/* ==========================================
+   PROFESSIONAL ITINERARY
+========================================== */
+
+.itinerary-card {
+    border-radius: 22px;
+    overflow: hidden;
+}
+
+
+.card-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+
+.card-title span {
+    padding: 7px 13px;
+    border-radius: 20px;
+    background: #eef7ef;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* DAY CARD */
+
+.day {
+    position: relative;
+
+    padding: 22px;
+
+    margin-bottom: 20px;
+
+    border-radius: 18px;
+
+    background: #fafcf9;
+
+    border: 1px solid #e6eee6;
+}
+
+
+.day:last-child {
+    margin-bottom: 0;
+}
+
+
+/* DAY HEADING */
+
+.day-heading {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+
+    padding-bottom: 14px;
+
+    border-bottom: 1px solid #e5e5e5;
+}
+
+
+.day-heading h3 {
+    margin: 0;
+
+    font-size: 19px;
+}
+
+
+.day-heading span {
+    font-size: 22px;
+}
+
+
+/* ACTIVITY */
+
+.activity {
+    position: relative;
+
+    padding: 14px 15px 14px 20px;
+
+    margin-bottom: 12px;
+
+    border-left: 3px solid #8caf91;
+
+    background: white;
+
+    border-radius: 0 12px 12px 0;
+}
+
+
+.activity:last-child {
+    margin-bottom: 0;
+}
+
+
+.activity strong {
+    display: inline-block;
+
+    margin-bottom: 5px;
+
+    font-size: 13px;
+}
+
+
+.activity p {
+    margin: 0 0 7px;
+
+    font-size: 16px;
+
+    font-weight: 600;
+}
+
+
+.activity small {
+    display: block;
+
+    line-height: 1.5;
+
+    color: #666;
+
+    margin-bottom: 7px;
+}
+
+
+.activity-address {
+    font-size: 13px;
+
+    color: #777;
+
+    line-height: 1.5;
+
+    margin-bottom: 8px;
+}
+
+
+/* GOOGLE MAP LINK */
+
+.maps-link {
+    display: inline-block;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    margin-top: 3px;
+}
+
+
+.maps-link:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================
+   PROFESSIONAL MAP
+========================================== */
+
+.map-card {
+    overflow: hidden;
+}
+
+
+.map-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    margin-bottom: 18px;
+}
+
+
+.map-header h2 {
+    margin-bottom: 5px;
+}
+
+
+.map-header p {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 13px;
+}
+
+
+.route-badge {
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    background: #eef7ef;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+}
+
+
+.map-box {
+    width: 100%;
+
+    height: 330px;
+
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    border: 1px solid #e2e8e2;
+}
+
+
+.map-box iframe {
+    width: 100%;
+
+    height: 100%;
+
+    border: 0;
+}
+
+
+.route-title {
+    margin-top: 20px;
+
+    margin-bottom: 10px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+.map-route {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 7px;
+
+    line-height: 1.7;
+
+    font-size: 13px;
+}
+
+
+.map-route span {
+    padding: 5px 9px;
+
+    background: #f4f7f4;
+
+    border-radius: 8px;
+}
+
+
+/* ==========================================
+   MOBILE RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
+
+    .day {
+        padding: 16px;
+    }
+
+
+    .activity {
+        padding: 13px;
+    }
+
+
+    .map-box {
+        height: 260px;
+    }
+
+
+    .map-header {
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+
+    .map-route {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .map-route span {
+        width: 100%;
+    }
+
+}
+
+/* =========================================
+   SAHAYATRI DASHBOARD - PREMIUM UI
+   ========================================= */
+
+.dashboard {
+    max-width: 1250px;
+    margin: auto;
+    padding: 45px 25px 60px;
+}
+
+
+/* =========================================
+   NAVBAR
+   ========================================= */
+
+.dashboard-nav {
+    margin: 18px auto 0;
+    max-width: 1250px;
+    padding: 18px 28px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(46, 139, 87, 0.15);
+    box-shadow: 0 8px 25px rgba(30, 70, 45, 0.08);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dashboard-logo {
+    font-size: 23px;
+    font-weight: 800;
+    color: #245238;
+}
+
+.dashboard-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.dashboard-links a {
+    color: #315640;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s ease;
+}
+
+.dashboard-links a:hover {
+    color: #2e8b57;
+}
+
+
+/* =========================================
+   TRIP HEADER
+   ========================================= */
+
+.trip-header {
+    margin-bottom: 30px;
+    padding: 32px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid #e1ece4;
+    box-shadow: 0 10px 30px rgba(30, 70, 45, 0.09);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+}
+
+.small-title {
+    color: #2e8b57;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+}
+
+.trip-header h1 {
+    color: #1d4931;
+    font-size: 38px;
+    margin: 0 0 10px;
+}
+
+.trip-description {
+    color: #718078;
+    font-size: 16px;
+    margin: 0;
+}
+
+.trip-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.trip-info span {
+    padding: 11px 15px;
+    border-radius: 30px;
+    background: #f0f8f3;
+    color: #286141;
+    border: 1px solid #d7e9dc;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+
+/* =========================================
+   MAIN GRID
+   ========================================= */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.45fr 1fr;
+    gap: 25px;
+    align-items: start;
+}
+
+
+/* =========================================
+   ITINERARY
+   ========================================= */
+
+.itinerary-card,
+.info-card {
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid #e0ebe4;
+    border-radius: 22px;
+    padding: 25px;
+    box-shadow: 0 9px 28px rgba(30, 70, 45, 0.08);
+}
+
+.card-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-title h2 {
+    color: #244d36;
+    font-size: 22px;
+    margin: 0;
+}
+
+.card-title span {
+    background: #eaf7ee;
+    color: #2e8b57;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* Day card */
+.day {
+    margin-bottom: 18px;
+    padding: 20px;
+    border-radius: 18px;
+    background: #f8fbf9;
+    border: 1px solid #e1ece5;
+    transition: 0.25s ease;
+}
+
+.day:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(30, 70, 45, 0.08);
+}
+
+.day-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.day-heading h3 {
+    color: #245238;
+    margin: 0;
+    font-size: 18px;
+}
+
+
+/* Activities */
+.activity {
+    position: relative;
+    padding: 15px 16px;
+    margin-bottom: 10px;
+    border-radius: 14px;
+    background: white;
+    border-left: 4px solid #4caf70;
+    box-shadow: 0 4px 12px rgba(30, 70, 45, 0.05);
+}
+
+.activity strong {
+    color: #2e8b57;
+    font-size: 13px;
+}
+
+.activity p {
+    margin: 5px 0;
+    color: #234c35;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.activity small {
+    color: #74827a;
+    line-height: 1.5;
+}
+
+.activity-address {
+    margin-top: 8px;
+    color: #66756d;
+    font-size: 13px;
+}
+
+.maps-link {
+    display: inline-block;
+    margin-top: 9px;
+    color: #2e8b57;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.maps-link:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   RIGHT COLUMN
+   ========================================= */
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+
+/* =========================================
+   MAP
+   ========================================= */
+
+.map-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.map-header h2 {
+    color: #244d36;
+    margin: 0 0 5px;
+    font-size: 21px;
+}
+
+.map-header p {
+    margin: 0;
+    color: #7a8880;
+    font-size: 13px;
+}
+
+.route-badge {
+    background: #e9f7ee;
+    color: #2e8b57;
+    border-radius: 20px;
+    padding: 7px 11px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.map-box {
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid #dce8df;
+}
+
+.map-box iframe {
+    width: 100%;
+    height: 300px;
+    border: 0;
+    display: block;
+}
+
+.route-title {
+    margin-top: 18px;
+    margin-bottom: 10px;
+    color: #315640;
+    font-weight: 700;
+}
+
+.map-route {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    color: #63736a;
+    font-size: 13px;
+}
+
+
+/* =========================================
+   BUDGET
+   ========================================= */
+
+.info-card h2 {
+    color: #244d36;
+    margin-top: 0;
+    font-size: 21px;
+}
+
+.budget-total {
+    font-size: 30px;
+    font-weight: 800;
+    color: #2e8b57;
+    margin: 15px 0;
+}
+
+.budget-total small {
+    color: #8a968f;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.budget-bar {
+    width: 100%;
+    height: 9px;
+    background: #e8efe9;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 18px;
+}
+
+.budget-bar div {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #4caf70, #83cf9b);
+    border-radius: 20px;
+}
+
+.budget-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 11px 0;
+    border-bottom: 1px solid #edf1ee;
+    color: #64736a;
+}
+
+.budget-row strong {
+    color: #294f38;
+}
+
+
+/* =========================================
+   SAFETY
+   ========================================= */
+
+.safety-card {
+    background: linear-gradient(135deg, #f4fbf6, #ffffff);
+}
+
+.safety-score {
+    font-size: 38px;
+    font-weight: 800;
+    color: #2e8b57;
+    margin: 15px 0;
+}
+
+.safety-card p {
+    color: #5f7067;
+    margin: 10px 0;
+}
+
+
+/* =========================================
+   LOCAL FOOD
+   ========================================= */
+
+.food-section {
+    margin-top: 28px;
+    padding: 28px;
+    background: rgba(255, 255, 255, 0.94);
+    border-radius: 22px;
+    border: 1px solid #e0ebe4;
+    box-shadow: 0 9px 28px rgba(30, 70, 45, 0.08);
+}
+
+.food-section > h2 {
+    color: #244d36;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.food-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.food-card {
+    background: #f8fbf9;
+    border: 1px solid #e0ebe4;
+    border-radius: 18px;
+    padding: 22px;
+    text-align: center;
+    transition: 0.25s ease;
+}
+
+.food-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 22px rgba(30, 70, 45, 0.1);
+}
+
+.food-image {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.food-card h3 {
+    color: #28523a;
+    margin: 8px 0;
+}
+
+.food-card p {
+    color: #78857e;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   AI SECTIONS
+   ========================================= */
+
+.ai-reason,
+.ai-tips {
+    margin-top: 25px;
+    padding: 28px;
+    border-radius: 22px;
+    border: 1px solid #dcebe1;
+    background: linear-gradient(135deg, #f1faf4, #ffffff);
+    box-shadow: 0 8px 25px rgba(30, 70, 45, 0.07);
+}
+
+.ai-reason h2,
+.ai-tips h2 {
+    color: #245238;
+    margin-top: 0;
+}
+
+.ai-reason p,
+.ai-tips-subtitle {
+    color: #64736a;
+    line-height: 1.7;
+}
+
+#ai-explanation {
+    font-size: 15px;
+}
+
+
+/* AI tips cards */
+#ai-tips-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.ai-tip-card {
+    display: flex;
+    gap: 13px;
+    align-items: flex-start;
+    padding: 17px;
+    background: white;
+    border: 1px solid #dfebe3;
+    border-radius: 15px;
+}
+
+.tip-number {
+    min-width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #2e8b57;
+    color: white;
+    font-weight: 700;
+}
+
+.ai-tip-card p {
+    margin: 4px 0 0;
+    color: #5f7067;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   ACTION BUTTONS
+   ========================================= */
+
+.dashboard-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 35px;
+}
+
+.dashboard-actions button {
+    padding: 14px 25px;
+    border: none;
+    border-radius: 30px;
+    background: #2e8b57;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s ease;
+    box-shadow: 0 7px 18px rgba(46, 139, 87, 0.2);
+}
+
+.dashboard-actions button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(46, 139, 87, 0.3);
+}
+
+.dashboard-actions button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .trip-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .trip-info {
+        justify-content: flex-start;
+    }
+
+    .food-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .dashboard {
+        padding: 25px 15px 40px;
+    }
+
+    .dashboard-nav {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .dashboard-links {
+        gap: 10px;
+    }
+
+    .dashboard-links a {
+        font-size: 12px;
+    }
+
+    .dashboard-logo {
+        font-size: 18px;
+    }
+
+    .trip-header {
+        padding: 23px;
+    }
+
+    .trip-header h1 {
+        font-size: 28px;
+    }
+
+    .itinerary-card,
+    .info-card,
+    .food-section,
+    .ai-reason,
+    .ai-tips {
+        padding: 20px;
+    }
+
+    #ai-tips-container {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-actions button {
+        width: 100%;
+    }
+}
+
+/* =========================================
+   USER PROFILE
+   ========================================= */
+
+.profile {
+    position: relative;
+}
+
+.profile-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    background: #eef8f1;
+    color: #28523a;
+    padding: 7px 12px 7px 7px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.25s ease;
+}
+
+.profile-btn:hover {
+    background: #dff1e5;
+    transform: translateY(-1px);
+}
+
+.profile-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #2e8b57;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+}
+
+.profile-name {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.profile-arrow {
+    font-size: 16px;
+    margin-left: 2px;
+}
+
+
+/* Dropdown */
+
+.profile-menu {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 12px);
+    width: 270px;
+    padding: 17px;
+    background: white;
+    border: 1px solid #dfebe3;
+    border-radius: 18px;
+    box-shadow: 0 15px 35px rgba(30, 70, 45, 0.16);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+
+    transition: all 0.2s ease;
+    z-index: 1000;
+}
+
+.profile-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+
+/* User details */
+
+.profile-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-big-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #e5f5ea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.profile-user strong {
+    display: block;
+    color: #244d36;
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+.profile-user small {
+    display: block;
+    color: #7b8981;
+    font-size: 12px;
+    word-break: break-all;
+}
+
+.profile-divider {
+    height: 1px;
+    background: #e8eee9;
+    margin: 15px 0;
+}
+
+
+/* Logout */
+
+.logout-btn {
+    width: 100%;
+    padding: 11px;
+    border: none;
+    border-radius: 10px;
+    background: #fff3f3;
+    color: #c74444;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.logout-btn:hover {
+    background: #ffe2e2;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .profile-name {
+        display: none;
+    }
+
+    .profile-menu {
+        right: -5px;
+        width: 245px;
+    }
+}
+
+/* My Profile option */
+
+.profile-option {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 11px;
+    margin-bottom: 8px;
+
+    border-radius: 10px;
+
+    background: #f1f8f3;
+    color: #28523a;
+
+    font-weight: 700;
+    text-decoration: none;
+
+    text-align: left;
+
+    transition: 0.2s ease;
+}
+
+.profile-option:hover {
+    background: #e1f2e6;
+    transform: translateX(2px);
+}
+
+/* =========================================
+   NAVBAR PROFILE PHOTO
+   ========================================= */
+
+.profile-avatar-img {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 2px solid white;
+
+    display: block;
+}
+
+
+.profile-big-avatar-img {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 2px solid #e5f5ea;
+
+    display: block;
+}
+
+/* =========================================
+   NAVBAR PROFILE POSITION FIX
+   ========================================= */
+
+.navbar .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.navbar .nav-links > a {
+    white-space: nowrap;
+}
+
+.navbar .profile {
+    position: relative;
+    margin-left: 4px;
+    flex-shrink: 0;
+}
+
+.navbar .profile-btn {
+    white-space: nowrap;
+    min-width: 145px;
+    justify-content: center;
+}
+
+
+/* Profile dropdown should stay below profile */
+
+.navbar .profile-menu {
+    top: calc(100% + 12px);
+    right: 0;
+    z-index: 9999;
+}
+
+/* ==========================================
+   NAVBAR PROFILE + EXPLORE FIX
+   ========================================== */
+
+.dashboard-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: nowrap;
+}
+
+.dashboard-links > a {
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.profile {
+    position: relative;
+    flex-shrink: 0;
+    margin-left: 4px;
+    z-index: 1000;
+}
+
+.profile-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Profile name limit so Explore never gets pushed/covered */
+.profile-name {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Dropdown should stay above everything */
+.profile-menu {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 12px);
+    z-index: 9999;
+}
+
+/* Navbar should allow profile dropdown */
+.dashboard-nav {
+    position: relative;
+    z-index: 1000;
+    overflow: visible;
+}
+
+
+/* ==========================================
+   RESPONSIVE NAVBAR
+   ========================================== */
+
+@media (max-width: 900px) {
+
+    .dashboard-links {
+        gap: 16px;
+    }
+
+    .profile-name {
+        max-width: 80px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .dashboard-links {
+        gap: 10px;
+    }
+
+    .dashboard-links > a {
+        font-size: 14px;
+    }
+
+    .profile-name {
+        display: none;
+    }
+}
+
+/* =========================================
+   NAVBAR ALIGNMENT FIX
+   ========================================= */
+
+.dashboard-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+/* Right side navigation */
+.dashboard-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 28px;
+    flex: 1;
+    min-width: 0;
+}
+
+/* Navigation links */
+.dashboard-links > a {
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Profile stays completely visible */
+.dashboard-links .profile {
+    flex-shrink: 0;
+    position: relative;
+}
+
+/* Profile button */
+.profile-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    max-width: 170px;
+}
+
+/* Don't allow long name to push Explore away */
+.profile-name {
+    display: block;
+    max-width: 85px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Keep arrow visible */
+.profile-arrow {
+    flex-shrink: 0;
+}
+
+/* =========================================
+   RESPONSIVE NAVBAR
+   ========================================= */
+
+@media (max-width: 1000px) {
+
+    .dashboard-links {
+        gap: 18px;
+    }
+
+    .profile-btn {
+        max-width: 140px;
+    }
+
+    .profile-name {
+        max-width: 60px;
+    }
+}
+
+/* =========================================
+   PROFILE + NAVBAR FINAL FIX
+   ========================================= */
+
+.dashboard-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+/* Explore la full space */
+.dashboard-links > a {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+/* Profile button */
+.profile {
+    flex-shrink: 0;
+    position: relative;
+}
+
+.profile-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    padding: 8px 14px;
+}
+
+/* Navbar madhe fakt first name */
+.profile-name {
+    max-width: 65px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full name dropdown madhe */
+.profile-user strong {
+    white-space: nowrap;
+}
+
+/* Arrow kadhi hide hou naye */
+.profile-arrow {
+    flex-shrink: 0;
+}

@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Sahayatri | Explore</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+
+    <style>
+
+        .explore-page {
+            max-width: 1100px;
+            margin: auto;
+            padding: 50px 20px;
+        }
+
+        .explore-hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .explore-hero h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .explore-hero p {
+            color: #777;
+            font-size: 17px;
+        }
+
+        .scanner-card {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 24px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+        }
+
+        .scanner-icon {
+            font-size: 55px;
+            text-align: center;
+        }
+
+        .scanner-card h2 {
+            text-align: center;
+        }
+
+        .scanner-description {
+            text-align: center;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        .reel-input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 15px;
+        }
+
+        .scan-button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .or-text {
+            text-align: center;
+            margin: 25px 0;
+            color: #999;
+        }
+
+        .upload-box {
+            border: 2px dashed #d8e3d8;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .upload-box input {
+            display: none;
+        }
+
+        .upload-box label {
+            cursor: pointer;
+        }
+
+        .upload-button {
+    display: inline-block;
+    padding: 14px 25px;
+    background: #eef7ee;
+    border: 1px solid #cfe3cf;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.upload-button:hover {
+    background: #e2f0e2;
+}
+
+.file-name {
+    margin-top: 10px;
+    color: #777;
+    font-size: 14px;
+}
+
+
+.budget-feature-card {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 28px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #e8f8ee, #ffffff);
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
+    border: 1px solid #d8eee0;
+}
+
+.budget-feature-icon {
+    width: 75px;
+    height: 75px;
+    min-width: 75px;
+    border-radius: 20px;
+    background: #159b82;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+}
+
+.budget-feature-content {
+    flex: 1;
+}
+
+.budget-badge {
+    display: inline-block;
+    padding: 5px 11px;
+    border-radius: 20px;
+    background: #d9f1e1;
+    color: #18744f;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.budget-feature-content h2 {
+    margin: 0 0 8px;
+    color: #155d3c;
+    font-size: 26px;
+}
+
+.budget-feature-content p {
+    margin: 0 0 15px;
+    color: #59655e;
+    line-height: 1.6;
+}
+
+.budget-feature-points {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.budget-feature-points span {
+    padding: 7px 11px;
+    border-radius: 20px;
+    background: #f1f8f3;
+    color: #38634c;
+    font-size: 13px;
+}
+
+.budget-feature-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 25px;
+    background: #159b82;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.budget-feature-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(21, 155, 130, 0.25);
+}
+
+@media (max-width: 600px) {
+
+    .budget-feature-card {
+        margin: 20px 15px;
+        padding: 22px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .budget-feature-icon {
+        width: 60px;
+        height: 60px;
+        min-width: 60px;
+        font-size: 30px;
+    }
+
+    .budget-feature-content h2 {
+        font-size: 23px;
+    }
+
+    .budget-feature-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="dashboard-nav">
+
+        <div class="dashboard-logo">
+            🌿 Sahayatri
+        </div>
+
+        <div class="dashboard-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="explore.html">
+                Explore
+            </a>
+
+            <a href="my-trips.html">
+                My Trips
+            </a>
+
+            <a href="login.html">Login</a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- EXPLORE PAGE -->
+
+    <main class="explore-page">
+
+        <section class="explore-hero">
+
+            <h1>
+                📸 Explore with Sahayatri
+            </h1>
+
+            <p>
+                Found an amazing travel place on Instagram?
+                Let Sahayatri help you plan a trip around it.
+            </p>
+
+        </section>
+
+
+        <!-- INSTAGRAM REEL SCANNER -->
+
+        <section class="scanner-card">
+
+            <div class="scanner-icon">
+                📸
+            </div>
+
+            <h2>
+                Instagram Reel Scanner
+            </h2>
+
+            <p class="scanner-description">
+                Paste an Instagram Reel link or upload
+                a screenshot to discover the location.
+            </p>
+
+
+            <!-- REEL URL -->
+
+            <input
+                type="text"
+                id="reel-url"
+                class="reel-input"
+                placeholder="Paste Instagram Reel URL here..."
+            >
+
+
+            <button
+                class="scan-button"
+                id="scan-button">
+
+                🔍 Find This Place
+
+            </button>
+
+
+            <div class="or-text">
+                OR
+            </div>
+
+
+            <!-- SCREENSHOT UPLOAD -->
+
+            <div class="upload-box">
+
+    <label for="reel-image" class="upload-button">
+        📷 Choose Screenshot
+    </label>
+
+    <input
+        type="file"
+        id="reel-image"
+        accept="image/*"
+    >
+
+    <div class="file-name" id="file-name">
+        No screenshot selected
+    </div>
+
+</div>
+
+        </section>
+
+        <!-- ================================
+     BUDGET SPLITTER
+     ================================ -->
+
+<section class="budget-feature-card">
+
+    <div class="budget-feature-icon">
+        💰
+    </div>
+
+    <div class="budget-feature-content">
+
+        <span class="budget-badge">
+            Group Trips
+        </span>
+
+        <h2>
+            Budget Splitter
+        </h2>
+
+        <p>
+            Split trip expenses with your friends,
+            track who paid what and see who owes whom.
+        </p>
+
+        <div class="budget-feature-points">
+
+            <span>👥 Who Paid What</span>
+
+            <span>💳 Smart Split</span>
+
+            <span>📱 Trip Bot</span>
+
+        </div>
+
+        <a
+            href="budget-splitter.html"
+            class="budget-feature-btn"
+        >
+            Open Budget Splitter →
+        </a>
+
+    </div>
+
+</section>
+
+    </main>
+
+
+    <script>
+const scanButton = document.getElementById("scan-button");
+const reelUrlInput = document.getElementById("reel-url");
+const imageInput = document.getElementById("reel-image");
+
+const fileName = document.getElementById("file-name");
+
+imageInput.addEventListener("change", () => {
+
+    if (imageInput.files.length > 0) {
+        fileName.innerText =
+            "✅ " + imageInput.files[0].name;
+    } else {
+        fileName.innerText =
+            "No screenshot selected";
+    }
+
+});
+
+scanButton.addEventListener("click", async () => {
+
+    const reelUrl = reelUrlInput.value.trim();
+    const imageFile = imageInput.files[0];
+
+    if (!reelUrl && !imageFile) {
+        alert("Please paste an Instagram Reel link OR upload a screenshot.");
+        return;
+    }
+
+    if (reelUrl && !reelUrl.includes("instagram.com")) {
+        alert("Please enter a valid Instagram Reel URL.");
+        return;
+    }
+
+    if (!imageFile) {
+        alert("Please upload a screenshot of the Reel so AI can identify the location.");
+        return;
+    }
+
+    scanButton.disabled = true;
+    scanButton.innerText = "🤖 AI is analyzing...";
+
+    try {
+
+        const formData = new FormData();
+
+        formData.append("image", imageFile);
+
+        if (reelUrl) {
+            formData.append("reelUrl", reelUrl);
+        }
+
+        const response = await fetch(
+            "http://localhost:8080/api/reel/analyze",
+            {
+                method: "POST",
+                body: formData
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || "AI analysis failed");
+        }
+
+        showResult(data);
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Something went wrong: " + error.message);
+
+    } finally {
+
+        scanButton.disabled = false;
+        scanButton.innerText = "🔍 Scan Reel";
+
+    }
+});
+
+
+function showResult(data) {
+
+    let oldResult = document.getElementById("ai-result");
+
+    if (oldResult) {
+        oldResult.remove();
+    }
+
+    const result = document.createElement("div");
+
+    result.id = "ai-result";
+
+    result.innerHTML = `
+        <div style="
+            margin-top:25px;
+            padding:25px;
+            border-radius:18px;
+            background:#f0fdf4;
+            border:1px solid #bbf7d0;
+        ">
+
+            <h2>📍 AI Detected Location</h2>
+
+            <h3>${data.location}</h3>
+
+            <p>
+                <strong>Confidence:</strong>
+                ${data.confidence}%
+            </p>
+
+            <p>
+                <strong>Why AI thinks this:</strong><br>
+                ${data.reason}
+            </p>
+
+            ${
+                data.location !== "Unknown"
+                ?
+                `
+                <button
+                    onclick="planTrip('${data.location.replace(/'/g, "\\'")}')"
+                    style="
+                        margin-top:15px;
+                        padding:12px 22px;
+                        border:none;
+                        border-radius:10px;
+                        background:#111827;
+                        color:white;
+                        cursor:pointer;
+                    "
+                >
+                    🗺️ Plan My Trip
+                </button>
+                `
+                :
+                ""
+            }
+
+        </div>
+    `;
+
+    document
+        .querySelector(".scanner-card")
+        ?.appendChild(result);
+
+    if (!document.querySelector(".scanner-card")) {
+        document.body.appendChild(result);
+    }
+}
+
+
+function planTrip(location) {
+
+    window.location.href =
+        "index.html?location=" +
+        encodeURIComponent(location);
+}
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About | Sahayatri</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* ================================
+           ABOUT PAGE
+           ================================ */
+
+        .about-page {
+            min-height: 100vh;
+            padding: 70px 20px;
+        }
+
+        .about-container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        /* Hero */
+
+        .about-hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .about-hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .about-hero h1 span {
+            color: #65d68a;
+        }
+
+        .about-hero p {
+            max-width: 750px;
+            margin: auto;
+            font-size: 18px;
+            line-height: 1.7;
+            color: #e8f5ec;
+        }
+
+
+        /* Main About Card */
+
+        .about-main {
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 45px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-main h2 {
+            color: #1b5e20;
+            font-size: 30px;
+            margin-bottom: 18px;
+        }
+
+        .about-main p {
+            color: #444;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+
+        /* Features */
+
+        .features-title {
+            text-align: center;
+            color: #ffffff;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            margin-bottom: 50px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.96);
+            padding: 28px 22px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            transition: 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 35px rgba(0, 0, 0, 0.18);
+        }
+
+        .feature-icon {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card h3 {
+            color: #1b5e20;
+            margin-bottom: 10px;
+            font-size: 19px;
+        }
+
+        .feature-card p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+
+        /* How it works */
+
+        .how-section {
+            background: rgba(255, 255, 255, 0.96);
+            padding: 40px;
+            border-radius: 24px;
+            margin-bottom: 45px;
+        }
+
+        .how-section h2 {
+            text-align: center;
+            color: #1b5e20;
+            font-size: 30px;
+            margin-bottom: 35px;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            margin: auto;
+            margin-bottom: 15px;
+            border-radius: 50%;
+            background: #1b5e20;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .step h3 {
+            color: #1b5e20;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+
+        /* Future Scope */
+
+        .future-section {
+            background: rgba(255, 255, 255, 0.96);
+            padding: 40px;
+            border-radius: 24px;
+            margin-bottom: 45px;
+        }
+
+        .future-section h2 {
+            color: #1b5e20;
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 25px;
+        }
+
+        .future-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .future-item {
+            background: #f1f8f3;
+            padding: 15px 18px;
+            border-radius: 12px;
+            color: #444;
+        }
+
+
+        /* CTA */
+
+        .about-cta {
+            text-align: center;
+            padding: 25px;
+        }
+
+        .about-cta h2 {
+            color: white;
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .about-cta p {
+            color: #e8f5ec;
+            margin-bottom: 25px;
+        }
+
+        .plan-btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: #ffffff;
+            color: #1b5e20;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .plan-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+
+        /* ================================
+           MOBILE
+           ================================ */
+
+        @media (max-width: 800px) {
+
+            .about-page {
+                padding: 45px 15px;
+            }
+
+            .about-hero h1 {
+                font-size: 36px;
+            }
+
+            .about-hero p {
+                font-size: 15px;
+            }
+
+            .about-main,
+            .how-section,
+            .future-section {
+                padding: 25px 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                grid-template-columns: 1fr 1fr;
+                gap: 25px;
+            }
+
+            .future-list {
+                grid-template-columns: 1fr;
+            }
+
+            .about-cta h2 {
+                font-size: 25px;
+            }
+        }
+
+
+        @media (max-width: 420px) {
+
+            .about-hero h1 {
+                font-size: 30px;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .about-main h2,
+            .how-section h2,
+            .future-section h2 {
+                font-size: 25px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- ================================
+         NAVBAR
+         ================================ -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🌿 Sahayatri
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">Home</a>
+
+            <a href="explore.html">Explore</a>
+
+            <a href="my-trips.html">My Trips</a>
+
+            <a href="about.html">About</a>
+
+            <a href="login.html" class="login-btn">
+                Login
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================================
+         ABOUT PAGE
+         ================================ -->
+
+    <main class="about-page">
+
+        <div class="about-container">
+
+
+            <!-- HERO -->
+
+            <section class="about-hero">
+
+                <h1>
+                    About <span>Sahayatri</span> 🌿
+                </h1>
+
+                <p>
+                    Your AI-powered travel companion that helps you
+                    discover meaningful journeys based on your mood,
+                    interests, budget and time.
+                </p>
+
+            </section>
+
+
+            <!-- ABOUT SAHAYATRI -->
+
+            <section class="about-main">
+
+                <h2>
+                    🌿 What is Sahayatri?
+                </h2>
+
+                <p>
+                    Sahayatri is an AI-powered trip planning platform
+                    designed to make travel planning simple, personalized
+                    and smarter.
+                </p>
+
+                <p>
+                    Instead of searching through multiple websites,
+                    users can simply select their mood, budget, number
+                    of days and interests. Sahayatri then creates a
+                    personalized day-wise travel itinerary.
+                </p>
+
+                <p>
+                    The platform combines Artificial Intelligence,
+                    real-world places, maps, budget planning and
+                    travel recommendations into one experience.
+                </p>
+
+            </section>
+
+
+            <!-- FEATURES -->
+
+            <h2 class="features-title">
+                ✨ What Makes Sahayatri Different?
+            </h2>
+
+
+            <section class="features-grid">
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        🧠
+                    </div>
+
+                    <h3>
+                        AI-Powered Planning
+                    </h3>
+
+                    <p>
+                        AI understands your preferences and generates
+                        a personalized travel itinerary.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        ❤️
+                    </div>
+
+                    <h3>
+                        Mood-Based Trips
+                    </h3>
+
+                    <p>
+                        Choose how you want to feel — Chill,
+                        Adventure, Spiritual or Romantic.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        📍
+                    </div>
+
+                    <h3>
+                        Real Places
+                    </h3>
+
+                    <p>
+                        Get recommendations using real places
+                        and location-based information.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        🗺️
+                    </div>
+
+                    <h3>
+                        Google Maps
+                    </h3>
+
+                    <p>
+                        View your destinations and travel route
+                        directly on the map.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        💰
+                    </div>
+
+                    <h3>
+                        Smart Budget
+                    </h3>
+
+                    <p>
+                        Get an estimated budget breakdown for
+                        accommodation, food, transport and activities.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        📸
+                    </div>
+
+                    <h3>
+                        Reel Scanner
+                    </h3>
+
+                    <p>
+                        Analyze a travel Reel screenshot and
+                        discover the location shown in it.
+                    </p>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- HOW IT WORKS -->
+
+            <section class="how-section">
+
+                <h2>
+                    🚀 How Sahayatri Works
+                </h2>
+
+                <div class="steps">
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            1
+                        </div>
+
+                        <h3>
+                            Choose Mood
+                        </h3>
+
+                        <p>
+                            Select the type of experience
+                            you want.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            2
+                        </div>
+
+                        <h3>
+                            Set Preferences
+                        </h3>
+
+                        <p>
+                            Enter your budget, days,
+                            location and interests.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            3
+                        </div>
+
+                        <h3>
+                            AI Creates Trip
+                        </h3>
+
+                        <p>
+                            Our AI generates a personalized
+                            day-wise itinerary.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            4
+                        </div>
+
+                        <h3>
+                            Start Exploring
+                        </h3>
+
+                        <p>
+                            View your route, budget,
+                            food and travel recommendations.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- FUTURE SCOPE -->
+
+            <section class="future-section">
+
+                <h2>
+                    🔮 Future Scope
+                </h2>
+
+                <div class="future-list">
+
+                    <div class="future-item">
+                        📱 Mobile application using the same backend
+                    </div>
+
+                    <div class="future-item">
+                        🎙️ Voice-based trip planning
+                    </div>
+
+                    <div class="future-item">
+                        👥 Advanced group trip & budget splitting
+                    </div>
+
+                    <div class="future-item">
+                        🌦️ Weather-aware itinerary updates
+                    </div>
+
+                    <div class="future-item">
+                        📸 Improved social-media travel discovery
+                    </div>
+
+                    <div class="future-item">
+                        🤖 More intelligent AI travel recommendations
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CTA -->
+
+            <section class="about-cta">
+
+                <h2>
+                    Ready to Plan Your Journey? ✨
+                </h2>
+
+                <p>
+                    Tell Sahayatri how you want to feel,
+                    and let AI plan the rest.
+                </p>
+
+                <a href="index.html" class="plan-btn">
+                    ✨ Plan My Trip
+                </a>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+</body>
+
+</html>

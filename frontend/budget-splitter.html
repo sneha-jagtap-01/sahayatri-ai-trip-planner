@@ -1,0 +1,3562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Budget Splitter | Sahayatri</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5faf7;
+            color: #17201b;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            height: 70px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: bold;
+            color: #159b82;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #159b82;
+        }
+
+        /* ================= PAGE ================= */
+
+        .page {
+            max-width: 850px;
+            margin: auto;
+            padding: 35px 20px 60px;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .heading h1 {
+            font-size: 36px;
+            color: #159b82;
+            margin-bottom: 8px;
+        }
+
+        .heading p {
+            color: #66736d;
+        }
+
+        /* ================= CARDS ================= */
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+        }
+
+        .card-title {
+            font-size: 23px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        /* ================= TRIP INFO ================= */
+
+        .trip-info {
+            background: #dff6e5;
+            border-radius: 18px;
+            padding: 18px;
+        }
+
+        .trip-info h2 {
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+
+        .trip-info p {
+            color: #52715e;
+        }
+
+        /* ================= GROUP ================= */
+
+        .group-status {
+            padding: 12px;
+            background: #f7faf8;
+            border-radius: 12px;
+            color: #52715e;
+            margin-bottom: 15px;
+        }
+
+        .member-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .member-form input {
+            padding: 12px;
+            border: 1px solid #d5ded9;
+            border-radius: 10px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .member-form input:focus {
+            border-color: #159b82;
+        }
+
+        .add-btn {
+            border: none;
+            background: #159b82;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .add-btn:hover {
+            background: #117f6b;
+        }
+
+        .add-btn:disabled {
+            background: #8fbdb3;
+            cursor: not-allowed;
+        }
+
+        .remove-member-btn {
+            border: none;
+            background: #ffe5e5;
+            color: #c0392b;
+            padding: 7px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .remove-member-btn:hover {
+            background: #ffd1d1;
+        }
+
+        /* ================= PEOPLE ================= */
+
+        .people-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .person {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 12px;
+            background: #f7faf8;
+            border-radius: 14px;
+        }
+
+        .avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            background: #19aa91;
+            flex-shrink: 0;
+        }
+
+        .person-info {
+            flex: 1;
+        }
+
+        .person-info strong {
+            display: block;
+            font-size: 16px;
+        }
+
+        .person-info small {
+            color: #777;
+        }
+
+        .paid-amount {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* ================= EXPENSE FORM ================= */
+
+        .expense-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: 10px;
+        }
+
+        .expense-form input,
+        .expense-form select {
+            padding: 12px;
+            border: 1px solid #d5ded9;
+            border-radius: 10px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .expense-form input:focus,
+        .expense-form select:focus {
+            border-color: #159b82;
+        }
+
+        /* ================= EXPENSE HISTORY ================= */
+
+        .expense-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 13px 0;
+            border-bottom: 1px solid #edf1ee;
+            gap: 10px;
+        }
+
+        .expense-item:last-child {
+            border-bottom: none;
+        }
+
+        .expense-info strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .expense-info small {
+            color: #777;
+        }
+
+        .expense-amount {
+            font-weight: bold;
+            color: #168b78;
+        }
+
+        .delete-expense-btn {
+            border: none;
+            background: #ffe8e8;
+            color: #c0392b;
+            padding: 6px 9px;
+            border-radius: 7px;
+            cursor: pointer;
+            margin-left: 8px;
+        }
+
+        /* ================= SUMMARY ================= */
+
+        .summary {
+            background: #e3f2ff;
+            border-radius: 18px;
+            padding: 20px;
+        }
+
+        .summary-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .summary-total {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .summary-share {
+            color: #66736d;
+            margin-bottom: 15px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+        }
+
+        .summary-row strong {
+            color: #168b78;
+        }
+
+        .request-btn {
+            margin-top: 15px;
+            border: none;
+            background: #159b82;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .request-btn:hover {
+            background: #117f6b;
+        }
+
+        /* ================= BOT ================= */
+
+        .bot-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .whatsapp {
+            color: #20b85a;
+            font-weight: bold;
+        }
+
+        .chat-box {
+            background: #e5f5e8;
+            border-radius: 16px;
+            padding: 15px;
+            min-height: 180px;
+            max-height: 320px;
+            overflow-y: auto;
+        }
+
+        .message {
+            max-width: 88%;
+            padding: 11px 14px;
+            border-radius: 13px;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .bot-message {
+            background: white;
+        }
+
+        .user-message {
+            background: #19aa91;
+            color: white;
+            margin-left: auto;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 22px;
+            outline: none;
+        }
+
+        .chat-input button {
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background: #159b82;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        /* ================= EMPTY ================= */
+
+        .empty-message {
+            text-align: center;
+            padding: 15px;
+            color: #777;
+        }
+
+        /* ================= BOTTOM NAV ================= */
+
+        .bottom-nav {
+            display: none;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 0 18px;
+                height: 62px;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .page {
+                padding: 25px 12px 80px;
+            }
+
+            .heading h1 {
+                font-size: 29px;
+            }
+
+            .heading p {
+                font-size: 14px;
+            }
+
+            .card {
+                padding: 18px;
+                border-radius: 18px;
+            }
+
+            .member-form {
+                grid-template-columns: 1fr;
+            }
+
+            .expense-form {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .add-btn {
+                grid-column: span 2;
+            }
+
+            .person {
+                padding: 10px;
+            }
+
+            .paid-amount {
+                font-size: 16px;
+            }
+
+            .summary-row {
+                flex-wrap: wrap;
+            }
+
+            .bottom-nav {
+                position: fixed;
+                display: flex;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 65px;
+                background: white;
+                box-shadow: 0 -3px 15px rgba(0,0,0,0.1);
+                justify-content: space-around;
+                align-items: center;
+                z-index: 1000;
+            }
+
+            .bottom-nav a {
+                text-decoration: none;
+                color: #555;
+                text-align: center;
+                font-size: 12px;
+            }
+
+            .bottom-nav span {
+                display: block;
+                font-size: 22px;
+                margin-bottom: 3px;
+            }
+
+            .bottom-nav .active {
+                color: #159b82;
+                font-weight: bold;
+            }
+
+        }
+
+        @media (max-width: 420px) {
+
+            .nav-links a {
+                font-size: 11px;
+            }
+
+            .navbar .logo {
+                font-size: 18px;
+            }
+
+            .avatar {
+                width: 40px;
+                height: 40px;
+            }
+
+            .paid-amount {
+                font-size: 15px;
+            }
+
+            .summary-row {
+                font-size: 14px;
+            }
+
+            .remove-member-btn {
+                padding: 6px 8px;
+                font-size: 11px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        🌿 Sahayatri
+    </div>
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="explore.html">
+            Explore
+        </a>
+
+        <a href="my-trips.html">
+            My Trips
+        </a>
+
+        <a href="about.html">
+            About
+        </a>
+
+    </div>
+
+</nav>
+
+
+<main class="page">
+
+
+    <!-- ================= HEADING ================= -->
+
+    <div class="heading">
+
+        <h1>
+            💰 Budget Splitter
+        </h1>
+
+        <p>
+            Split your group trip expenses easily with Sahayatri.
+        </p>
+
+    </div>
+
+
+    <!-- ================= CURRENT TRIP ================= -->
+
+    <div class="card trip-info">
+
+        <h2 id="group-trip-title">
+            Loading your trip...
+        </h2>
+
+        <p id="group-trip-description">
+            Loading current saved trip...
+        </p>
+
+    </div>
+
+
+    <!-- ================= GROUP MEMBERS ================= -->
+
+    <div class="card">
+
+        <div class="card-title">
+            👥 Trip Group
+        </div>
+
+        <div
+            id="groupStatus"
+            class="group-status"
+        >
+            Loading your trip group...
+        </div>
+
+
+        <div class="member-form">
+
+            <input
+                type="text"
+                id="memberName"
+                placeholder="Friend name"
+            >
+
+            <input
+                type="text"
+                id="memberPhone"
+                placeholder="Phone (optional)"
+            >
+
+            <input
+                type="email"
+                id="memberEmail"
+                placeholder="Email (optional)"
+            >
+
+            <input
+                type="text"
+                id="memberUpi"
+                placeholder="UPI ID e.g. name@upi"
+            >
+
+        </div>
+
+
+        <button
+            id="addMemberBtn"
+            class="add-btn"
+            style="margin-top:12px;"
+            onclick="addMember()"
+        >
+            ➕ Add Friend
+        </button>
+
+    </div>
+
+
+    <!-- ================= PEOPLE ================= -->
+
+    <div class="card">
+
+        <div class="card-title">
+            👥 Who Paid What
+        </div>
+
+        <div
+            class="people-list"
+            id="peopleList"
+        >
+
+            <div class="empty-message">
+                Loading members...
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= ADD EXPENSE ================= -->
+
+    <div class="card">
+
+        <div class="card-title">
+            ➕ Add Expense
+        </div>
+
+        <div class="expense-form">
+
+            <input
+                type="text"
+                id="expenseName"
+                placeholder="Expense e.g. Breakfast"
+            >
+
+            <input
+                type="number"
+                id="expenseAmount"
+                placeholder="Amount ₹"
+                min="1"
+            >
+
+            <select id="expensePerson">
+
+                <option value="">
+                    Select who paid
+                </option>
+
+            </select>
+
+            <button
+                id="addExpenseBtn"
+                class="add-btn"
+                onclick="addExpense()"
+            >
+                Add
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= EXPENSE HISTORY ================= -->
+
+    <div class="card">
+
+        <div class="card-title">
+            🧾 Expense History
+        </div>
+
+        <div id="expenseList">
+
+            <div class="empty-message">
+                Loading expenses...
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= SUMMARY ================= -->
+
+    <div class="card">
+
+        <div class="summary">
+
+            <div class="summary-title">
+                ↔️ UPI Split Summary
+            </div>
+
+            <div
+                id="summaryTotal"
+                class="summary-total"
+            >
+                Total: ₹0
+            </div>
+
+            <div
+                id="summaryShare"
+                class="summary-share"
+            >
+                Equal share: ₹0
+            </div>
+
+            <div id="settlementList">
+
+                <div class="summary-row">
+
+                    <span>
+                        Calculating...
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= TRIP BOT ================= -->
+
+    <div
+        class="card"
+        id="tripBot"
+    >
+
+        <div class="bot-header">
+
+            <div
+                class="card-title"
+                style="margin:0;"
+            >
+                TripBot
+            </div>
+
+            <div class="whatsapp">
+                🟢 Chat
+            </div>
+
+        </div>
+
+
+        <div
+            class="chat-box"
+            id="chatBox"
+        >
+
+            <div class="message bot-message">
+
+                🤖 <strong>TripBot:</strong>
+
+                Loading your current trip budget...
+
+            </div>
+
+        </div>
+
+
+        <div class="chat-input">
+
+            <input
+                type="text"
+                id="chatInput"
+                placeholder="Message TripBot..."
+                onkeydown="handleEnter(event)"
+            >
+
+            <button
+                onclick="sendMessage()"
+            >
+                ➤
+            </button>
+
+        </div>
+
+    </div>
+
+
+</main>
+
+
+<!-- ================= MOBILE BOTTOM NAV ================= -->
+
+<div class="bottom-nav">
+
+    <a
+        href="index.html"
+        class="active"
+    >
+        <span>🏠</span>
+        Plan
+    </a>
+
+
+    <a href="explore.html">
+
+        <span>📸</span>
+        Scanner
+
+    </a>
+
+
+    <a
+        href="budget-splitter.html"
+        class="active"
+    >
+        <span>💳</span>
+        Budgets
+    </a>
+
+
+    <a href="#tripBot">
+
+        <span>💬</span>
+        Chat
+
+    </a>
+
+</div>
+
+
+<script>
+
+
+/* =====================================================
+   GLOBAL DATA
+===================================================== */
+
+let currentTrip = null;
+let currentGroup = null;
+let members = [];
+let expenses = [];
+let summary = null;
+
+
+/* =====================================================
+   API BASE URL
+===================================================== */
+
+const API_BASE =
+    "http://localhost:8080/api";
+
+
+/* =====================================================
+   SAVED TRIP ID
+===================================================== */
+
+const savedTripId =
+    localStorage.getItem("savedTripId");
+
+
+/* =====================================================
+   LOGGED IN USER
+===================================================== */
+
+const loggedInEmail =
+    localStorage.getItem("loggedInUser");
+
+const loggedInName =
+    localStorage.getItem("userName") ||
+    "You";
+
+
+/* =====================================================
+   LOAD CURRENT SAVED TRIP
+===================================================== */
+
+async function loadCurrentTrip() {
+
+    if (!savedTripId) {
+
+        document.getElementById(
+            "group-trip-title"
+        ).innerText =
+            "⚠️ No saved trip selected";
+
+        document.getElementById(
+            "group-trip-description"
+        ).innerText =
+            "Please open a saved trip from My Trips first.";
+
+        document.getElementById(
+            "groupStatus"
+        ).innerText =
+            "No saved trip selected.";
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_BASE +
+                "/trips/" +
+                savedTripId
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Trip not found"
+            );
+
+        }
+
+
+        currentTrip =
+            await response.json();
+
+
+        localStorage.setItem(
+            "budgetCurrentTrip",
+            JSON.stringify(currentTrip)
+        );
+
+
+        document.getElementById(
+            "group-trip-title"
+        ).innerText =
+            "🌿 Group Trip • " +
+            currentTrip.location +
+            " Trip";
+
+
+        document.getElementById(
+            "group-trip-description"
+        ).innerText =
+            "Split expenses with your travel companions for this " +
+            currentTrip.days +
+            "-day " +
+            currentTrip.mood +
+            " trip.";
+
+
+        await loadOrCreateGroup();
+
+
+    } catch (error) {
+
+        console.error(
+            "Current Trip Error:",
+            error
+        );
+
+
+        document.getElementById(
+            "group-trip-title"
+        ).innerText =
+            "⚠️ Unable to load trip";
+
+
+        document.getElementById(
+            "group-trip-description"
+        ).innerText =
+            "Please open the saved trip again from My Trips.";
+
+    }
+
+}
+
+
+/* =====================================================
+   NORMALIZE GROUP RESPONSE
+   Handles different backend response formats
+===================================================== */
+
+function normalizeGroupResponse(data) {
+
+    if (!data) {
+        return null;
+    }
+
+
+    /* Direct group object */
+
+    if (data.id) {
+
+        return {
+
+            ...data,
+
+            groupName:
+                data.groupName ||
+                (
+                    currentTrip
+                        ? currentTrip.location + " Trip"
+                        : "Trip Group"
+                )
+
+        };
+
+    }
+
+
+    /* { group: {...} } */
+
+    if (
+        data.group &&
+        data.group.id
+    ) {
+
+        return {
+
+            ...data.group,
+
+            groupName:
+                data.group.groupName ||
+                (
+                    currentTrip
+                        ? currentTrip.location + " Trip"
+                        : "Trip Group"
+                )
+
+        };
+
+    }
+
+
+    /* { data: {...} } */
+
+    if (
+        data.data &&
+        data.data.id
+    ) {
+
+        return {
+
+            ...data.data,
+
+            groupName:
+                data.data.groupName ||
+                (
+                    currentTrip
+                        ? currentTrip.location + " Trip"
+                        : "Trip Group"
+                )
+
+        };
+
+    }
+
+
+    /* groupId instead of id */
+
+    if (data.groupId) {
+
+        return {
+
+            ...data,
+
+            id: data.groupId,
+
+            groupName:
+                data.groupName ||
+                (
+                    currentTrip
+                        ? currentTrip.location + " Trip"
+                        : "Trip Group"
+                )
+
+        };
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =====================================================
+   LOAD OR CREATE GROUP
+===================================================== */
+
+async function loadOrCreateGroup() {
+
+    if (!currentTrip) {
+        return;
+    }
+
+
+    if (!loggedInEmail) {
+
+        document.getElementById(
+            "groupStatus"
+        ).innerText =
+            "🔐 Please login to use Budget Splitter.";
+
+        return;
+
+    }
+
+
+    try {
+
+        let response =
+            await fetch(
+                API_BASE +
+                "/budget/groups/trip/" +
+                currentTrip.id
+            );
+
+
+        /* =========================================
+           GROUP ALREADY EXISTS
+        ========================================= */
+
+        if (response.ok) {
+
+            const data =
+                await response.json();
+
+
+            currentGroup =
+                normalizeGroupResponse(
+                    data
+                );
+
+        }
+
+
+        /* =========================================
+           GROUP DOES NOT EXIST
+        ========================================= */
+
+        else {
+
+            response =
+                await fetch(
+                    API_BASE +
+                    "/budget/groups",
+                    {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            tripId:
+                                currentTrip.id,
+
+                            groupName:
+                                currentTrip.location +
+                                " Trip",
+
+                            createdByEmail:
+                                loggedInEmail
+
+                        })
+
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                let errorMessage =
+                    "Unable to create group.";
+
+                try {
+
+                    const errorData =
+                        await response.json();
+
+                    if (
+                        errorData.message
+                    ) {
+
+                        errorMessage =
+                            errorData.message;
+
+                    }
+
+                } catch (e) {
+
+                    // Ignore JSON parsing error
+
+                }
+
+
+                throw new Error(
+                    errorMessage
+                );
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            currentGroup =
+                normalizeGroupResponse(
+                    data
+                );
+
+        }
+
+
+        /* =========================================
+           VALIDATE GROUP
+        ========================================= */
+
+        if (
+            !currentGroup ||
+            !currentGroup.id
+        ) {
+
+            console.error(
+                "Unexpected Group Response:",
+                currentGroup
+            );
+
+
+            throw new Error(
+                "Group ID not found in response"
+            );
+
+        }
+
+
+        /* =========================================
+           SAVE GROUP ID
+        ========================================= */
+
+        localStorage.setItem(
+            "budgetGroupId",
+            String(currentGroup.id)
+        );
+
+
+        /* =========================================
+           SHOW GROUP STATUS
+        ========================================= */
+
+        document.getElementById(
+            "groupStatus"
+        ).innerText =
+            "✅ Group ready • " +
+            (
+                currentGroup.groupName ||
+                currentTrip.location +
+                " Trip"
+            );
+
+
+        /* =========================================
+           LOAD GROUP DATA
+        ========================================= */
+
+        await loadGroupData();
+
+
+    } catch (error) {
+
+        console.error(
+            "Group Error:",
+            error
+        );
+
+
+        document.getElementById(
+            "groupStatus"
+        ).innerText =
+            "⚠️ Unable to load trip group.";
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD MEMBERS + EXPENSES + SUMMARY
+===================================================== */
+
+async function loadGroupData() {
+
+    if (
+        !currentGroup ||
+        !currentGroup.id
+    ) {
+
+        return;
+
+    }
+
+
+    await loadMembers();
+
+    await loadExpenses();
+
+    await loadSummary();
+
+    updateBotWelcome();
+
+}
+
+
+/* =====================================================
+   LOAD MEMBERS
+===================================================== */
+
+async function loadMembers() {
+
+    try {
+
+        const response =
+            await fetch(
+                API_BASE +
+                "/budget/groups/" +
+                currentGroup.id +
+                "/members"
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Members loading failed"
+            );
+
+        }
+
+
+        members =
+            await response.json();
+
+
+        renderMembers();
+
+        populateExpensePeople();
+
+
+    } catch (error) {
+
+        console.error(
+            "Members Error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   NORMALIZE TEXT
+===================================================== */
+
+function normalizeText(value) {
+
+    return String(
+        value || ""
+    )
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, " ");
+
+}
+
+
+/* =====================================================
+   NORMALIZE PHONE
+===================================================== */
+
+function normalizePhone(value) {
+
+    return String(
+        value || ""
+    )
+        .replace(/\D/g, "")
+        .slice(-10);
+
+}
+
+
+/* =====================================================
+   ADD MEMBER
+===================================================== */
+
+async function addMember() {
+
+    if (
+        !currentGroup ||
+        !currentGroup.id
+    ) {
+
+        alert(
+            "Trip group is not ready yet."
+        );
+
+        return;
+
+    }
+
+
+    const name =
+        document.getElementById(
+            "memberName"
+        ).value.trim();
+
+
+    const phone =
+        document.getElementById(
+            "memberPhone"
+        ).value.trim();
+
+
+    const email =
+        document.getElementById(
+            "memberEmail"
+        ).value.trim();
+
+
+    const upiId =
+        document.getElementById(
+            "memberUpi"
+        ).value.trim();
+
+
+    if (name === "") {
+
+        alert(
+            "Please enter friend's name."
+        );
+
+        return;
+
+    }
+
+
+    /* =========================================
+       DUPLICATE NAME
+    ========================================= */
+
+    const duplicateName =
+        members.some(
+            function(member) {
+
+                return (
+                    normalizeText(
+                        member.name
+                    ) ===
+                    normalizeText(name)
+                );
+
+            }
+        );
+
+
+    if (duplicateName) {
+
+        alert(
+            name +
+            " is already added to this trip group."
+        );
+
+        return;
+
+    }
+
+
+    /* =========================================
+       DUPLICATE EMAIL
+    ========================================= */
+
+    if (email !== "") {
+
+        const duplicateEmail =
+            members.some(
+                function(member) {
+
+                    return (
+                        member.email &&
+                        normalizeText(
+                            member.email
+                        ) ===
+                        normalizeText(email)
+                    );
+
+                }
+            );
+
+
+        if (duplicateEmail) {
+
+            alert(
+                "This email is already added to the group."
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    /* =========================================
+       DUPLICATE PHONE
+    ========================================= */
+
+    if (phone !== "") {
+
+        const newPhone =
+            normalizePhone(phone);
+
+
+        const duplicatePhone =
+            members.some(
+                function(member) {
+
+                    return (
+                        member.phone &&
+                        normalizePhone(
+                            member.phone
+                        ) ===
+                        newPhone
+                    );
+
+                }
+            );
+
+
+        if (duplicatePhone) {
+
+            alert(
+                "This phone number is already added to the group."
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    /* =========================================
+       DUPLICATE UPI
+    ========================================= */
+
+    if (upiId !== "") {
+
+        const duplicateUpi =
+            members.some(
+                function(member) {
+
+                    return (
+                        member.upiId &&
+                        normalizeText(
+                            member.upiId
+                        ) ===
+                        normalizeText(upiId)
+                    );
+
+                }
+            );
+
+
+        if (duplicateUpi) {
+
+            alert(
+                "This UPI ID is already added to the group."
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    const addButton =
+        document.getElementById(
+            "addMemberBtn"
+        );
+
+
+    try {
+
+        /* Prevent double click */
+
+        addButton.disabled = true;
+
+        addButton.innerText =
+            "Adding...";
+
+
+        const response =
+            await fetch(
+                API_BASE +
+                "/budget/groups/" +
+                currentGroup.id +
+                "/members",
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        name: name,
+
+                        email:
+                            email || null,
+
+                        phone:
+                            phone || null,
+
+                        upiId:
+                            upiId || null
+
+                    })
+
+                }
+            );
+
+
+        if (!response.ok) {
+
+            let errorMessage =
+                "Unable to add friend.";
+
+            try {
+
+                const errorData =
+                    await response.json();
+
+                if (
+                    errorData.message
+                ) {
+
+                    errorMessage =
+                        errorData.message;
+
+                }
+
+            } catch (e) {
+
+                // Ignore JSON parsing error
+
+            }
+
+
+            throw new Error(
+                errorMessage
+            );
+
+        }
+
+
+        /* Clear form */
+
+        document.getElementById(
+            "memberName"
+        ).value = "";
+
+
+        document.getElementById(
+            "memberPhone"
+        ).value = "";
+
+
+        document.getElementById(
+            "memberEmail"
+        ).value = "";
+
+
+        document.getElementById(
+            "memberUpi"
+        ).value = "";
+
+
+        /* Refresh all data */
+
+        await loadGroupData();
+
+
+        addBotMessage(
+            "Added " +
+            name +
+            " to the trip group. 👥"
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Add Member Error:",
+            error
+        );
+
+
+        alert(
+            error.message ||
+            "Unable to add friend."
+        );
+
+    } finally {
+
+        addButton.disabled = false;
+
+        addButton.innerText =
+            "➕ Add Friend";
+
+    }
+
+}
+
+
+/* =====================================================
+   REMOVE MEMBER
+===================================================== */
+
+async function removeMember(
+    memberId,
+    memberName
+) {
+
+    const confirmed =
+        confirm(
+            "Remove " +
+            memberName +
+            " from this trip group?"
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_BASE +
+                "/budget/groups/" +
+                currentGroup.id +
+                "/members/" +
+                memberId,
+                {
+                    method: "DELETE"
+                }
+            );
+
+
+        if (!response.ok) {
+
+            let message =
+                "Unable to remove member.";
+
+            try {
+
+                const data =
+                    await response.json();
+
+                if (data.message) {
+                    message =
+                        data.message;
+                }
+
+            } catch (e) {
+
+                // Ignore
+
+            }
+
+
+            throw new Error(
+                message
+            );
+
+        }
+
+
+        await loadGroupData();
+
+
+        addBotMessage(
+            memberName +
+            " was removed from the trip group."
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Remove Member Error:",
+            error
+        );
+
+
+        alert(
+            error.message ||
+            "Unable to remove member."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   RENDER MEMBERS
+===================================================== */
+
+function renderMembers() {
+
+    const list =
+        document.getElementById(
+            "peopleList"
+        );
+
+
+    list.innerHTML = "";
+
+
+    if (!members.length) {
+
+        list.innerHTML = `
+
+            <div class="empty-message">
+
+                No members added yet.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    members.forEach(
+        function(member) {
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "person";
+
+
+            const initial =
+                member.name
+                    ? member.name
+                        .charAt(0)
+                        .toUpperCase()
+                    : "?";
+
+
+            const isCurrentUser =
+                member.email &&
+                loggedInEmail &&
+                normalizeText(
+                    member.email
+                ) ===
+                normalizeText(
+                    loggedInEmail
+                );
+
+
+            div.innerHTML = `
+
+                <div class="avatar">
+                    ${escapeHtml(initial)}
+                </div>
+
+                <div class="person-info">
+
+                    <strong>
+                        ${escapeHtml(
+                            member.name
+                        )}
+                    </strong>
+
+                    <small>
+                        ${
+                            member.upiId
+                                ? "UPI added"
+                                : "UPI not added"
+                        }
+                    </small>
+
+                </div>
+
+                <div
+                    class="paid-amount"
+                    id="paid-${member.id}"
+                >
+                    ₹0
+                </div>
+
+                ${
+                    !isCurrentUser
+                        ? `
+                        <button
+                            class="remove-member-btn"
+                            onclick='removeMember(
+                                ${member.id},
+                                ${JSON.stringify(
+                                    member.name
+                                )}
+                            )'
+                        >
+                            🗑️ Remove
+                        </button>
+                        `
+                        : `
+                        <small
+                            style="
+                                color:#159b82;
+                                font-weight:bold;
+                            "
+                        >
+                            You
+                        </small>
+                        `
+                }
+
+            `;
+
+
+            list.appendChild(
+                div
+            );
+
+        }
+    );
+
+
+    updatePaidAmounts();
+
+}
+
+
+/* =====================================================
+   UPDATE WHO PAID WHAT
+===================================================== */
+
+function updatePaidAmounts() {
+
+    const totals = {};
+
+
+    members.forEach(
+        function(member) {
+
+            totals[member.id] = 0;
+
+        }
+    );
+
+
+    expenses.forEach(
+        function(expense) {
+
+            const memberId =
+                Number(
+                    expense.paidByMemberId
+                );
+
+
+            if (
+                totals[memberId] !== undefined
+            ) {
+
+                totals[memberId] +=
+                    Number(
+                        expense.amount || 0
+                    );
+
+            }
+
+        }
+    );
+
+
+    members.forEach(
+        function(member) {
+
+            const element =
+                document.getElementById(
+                    "paid-" +
+                    member.id
+                );
+
+
+            if (element) {
+
+                element.innerText =
+                    "₹" +
+                    Number(
+                        totals[member.id] || 0
+                    ).toLocaleString(
+                        "en-IN",
+                        {
+                            maximumFractionDigits: 2
+                        }
+                    );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   EXPENSE PERSON DROPDOWN
+===================================================== */
+
+function populateExpensePeople() {
+
+    const select =
+        document.getElementById(
+            "expensePerson"
+        );
+
+
+    select.innerHTML = `
+
+        <option value="">
+            Select who paid
+        </option>
+
+    `;
+
+
+    members.forEach(
+        function(member) {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                member.id;
+
+
+            option.textContent =
+                member.name;
+
+
+            select.appendChild(
+                option
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   ADD EXPENSE
+===================================================== */
+
+async function addExpense() {
+
+    if (
+        !currentGroup ||
+        !currentGroup.id
+    ) {
+
+        alert(
+            "Trip group is not ready."
+        );
+
+        return;
+
+    }
+
+
+    const name =
+        document.getElementById(
+            "expenseName"
+        ).value.trim();
+
+
+    const amount =
+        Number(
+            document.getElementById(
+                "expenseAmount"
+            ).value
+        );
+
+
+    const memberId =
+        document.getElementById(
+            "expensePerson"
+        ).value;
+
+
+    if (name === "") {
+
+        alert(
+            "Please enter expense name."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        !Number.isFinite(amount) ||
+        amount <= 0
+    ) {
+
+        alert(
+            "Please enter a valid amount."
+        );
+
+        return;
+
+    }
+
+
+    if (!memberId) {
+
+        alert(
+            "Please select who paid."
+        );
+
+        return;
+
+    }
+
+
+    const addExpenseButton =
+        document.getElementById(
+            "addExpenseBtn"
+        );
+
+
+    try {
+
+        addExpenseButton.disabled =
+            true;
+
+        addExpenseButton.innerText =
+            "Adding...";
+
+
+        const response =
+            await fetch(
+                API_BASE +
+                "/budget/groups/" +
+                currentGroup.id +
+                "/expenses",
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        description:
+                            name,
+
+                        amount:
+                            amount,
+
+                        paidByMemberId:
+                            Number(memberId)
+
+                    })
+
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Expense add failed"
+            );
+
+        }
+
+
+        document.getElementById(
+            "expenseName"
+        ).value = "";
+
+
+        document.getElementById(
+            "expenseAmount"
+        ).value = "";
+
+
+        document.getElementById(
+            "expensePerson"
+        ).value = "";
+
+
+        await loadGroupData();
+
+
+        addBotMessage(
+            "Added ₹" +
+            amount.toLocaleString(
+                "en-IN"
+            ) +
+            " for " +
+            name +
+            "."
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Add Expense Error:",
+            error
+        );
+
+
+        alert(
+            "Unable to add expense."
+        );
+
+    } finally {
+
+        addExpenseButton.disabled =
+            false;
+
+        addExpenseButton.innerText =
+            "Add";
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD EXPENSES
+===================================================== */
+
+async function loadExpenses() {
+
+    if (
+        !currentGroup ||
+        !currentGroup.id
+    ) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_BASE +
+                "/budget/groups/" +
+                currentGroup.id +
+                "/expenses"
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Expense loading failed"
+            );
+
+        }
+
+
+        expenses =
+            await response.json();
+
+
+        renderExpenseHistory();
+
+        updatePaidAmounts();
+
+
+    } catch (error) {
+
+        console.error(
+            "Expense Error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   RENDER EXPENSE HISTORY
+===================================================== */
+
+function renderExpenseHistory() {
+
+    const list =
+        document.getElementById(
+            "expenseList"
+        );
+
+
+    list.innerHTML = "";
+
+
+    if (!expenses.length) {
+
+        list.innerHTML = `
+
+            <div class="empty-message">
+
+                No expenses added yet.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    expenses.forEach(
+        function(expense) {
+
+            const payer =
+                members.find(
+                    function(member) {
+
+                        return (
+                            Number(member.id) ===
+                            Number(
+                                expense.paidByMemberId
+                            )
+                        );
+
+                    }
+                );
+
+
+            const payerName =
+                payer
+                    ? payer.name
+                    : "Unknown";
+
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "expense-item";
+
+
+            div.innerHTML = `
+
+                <div class="expense-info">
+
+                    <strong>
+                        ${escapeHtml(
+                            expense.description
+                        )}
+                    </strong>
+
+                    <small>
+                        Paid by ${escapeHtml(
+                            payerName
+                        )}
+                    </small>
+
+                </div>
+
+                <div>
+
+                    <span class="expense-amount">
+
+                        ₹${Number(
+                            expense.amount
+                        ).toLocaleString(
+                            "en-IN",
+                            {
+                                maximumFractionDigits: 2
+                            }
+                        )}
+
+                    </span>
+
+                    <button
+                        class="delete-expense-btn"
+                        onclick="deleteExpense(
+                            ${expense.id}
+                        )"
+                    >
+                        ✕
+                    </button>
+
+                </div>
+
+            `;
+
+
+            list.appendChild(
+                div
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   DELETE EXPENSE
+===================================================== */
+
+async function deleteExpense(
+    expenseId
+) {
+
+    const confirmed =
+        confirm(
+            "Delete this expense?"
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_BASE +
+                "/budget/groups/" +
+                currentGroup.id +
+                "/expenses/" +
+                expenseId,
+                {
+                    method: "DELETE"
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Delete failed"
+            );
+
+        }
+
+
+        await loadGroupData();
+
+
+        addBotMessage(
+            "Expense deleted successfully. 🗑️"
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Delete Expense Error:",
+            error
+        );
+
+
+        alert(
+            "Unable to delete expense."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD SUMMARY
+===================================================== */
+
+async function loadSummary() {
+
+    if (
+        !currentGroup ||
+        !currentGroup.id
+    ) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_BASE +
+                "/budget/groups/" +
+                currentGroup.id +
+                "/summary"
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Summary loading failed"
+            );
+
+        }
+
+
+        summary =
+            await response.json();
+
+
+        renderSummary();
+
+
+    } catch (error) {
+
+        console.error(
+            "Summary Error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   RENDER SUMMARY
+===================================================== */
+
+function renderSummary() {
+
+    if (!summary) {
+        return;
+    }
+
+
+    document.getElementById(
+        "summaryTotal"
+    ).innerText =
+        "Total: ₹" +
+        Number(
+            summary.total || 0
+        ).toLocaleString(
+            "en-IN",
+            {
+                maximumFractionDigits: 2
+            }
+        );
+
+
+    document.getElementById(
+        "summaryShare"
+    ).innerText =
+        "Equal share: ₹" +
+        Number(
+            summary.equalShare || 0
+        ).toLocaleString(
+            "en-IN",
+            {
+                maximumFractionDigits: 2
+            }
+        );
+
+
+    const settlement =
+        document.getElementById(
+            "settlementList"
+        );
+
+
+    settlement.innerHTML = "";
+
+
+    const settlements =
+        summary.settlements || [];
+
+
+    if (!settlements.length) {
+
+        settlement.innerHTML = `
+
+            <div class="summary-row">
+
+                <span>
+                    Everyone is settled 🎉
+                </span>
+
+                <strong>
+                    ₹0
+                </strong>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    settlements.forEach(
+        function(item) {
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+
+            row.className =
+                "summary-row";
+
+
+            const fromName =
+                item.fromName ||
+                "Member";
+
+
+            const toName =
+                item.toName ||
+                "Member";
+
+
+            const amount =
+                Number(
+                    item.amount || 0
+                );
+
+
+            row.innerHTML = `
+
+                <span>
+
+                    ${escapeHtml(
+                        fromName
+                    )}
+
+                    pays
+
+                    ${escapeHtml(
+                        toName
+                    )}
+
+                </span>
+
+
+                <div>
+
+                    <strong>
+
+                        ₹${amount.toLocaleString(
+                            "en-IN",
+                            {
+                                maximumFractionDigits: 2
+                            }
+                        )}
+
+                    </strong>
+
+
+                    ${
+                        item.toUpiId
+                            ? `
+                            <button
+                                class="request-btn"
+                                style="
+                                    margin-top:0;
+                                    margin-left:8px;
+                                    padding:7px 12px;
+                                "
+                                onclick='payViaUPI(
+                                    ${JSON.stringify(
+                                        item.toUpiId
+                                    )},
+                                    ${JSON.stringify(
+                                        toName
+                                    )},
+                                    ${amount}
+                                )'
+                            >
+                                💳 Pay
+                            </button>
+                            `
+                            :
+                            `
+                            <small
+                                style="
+                                    display:block;
+                                    color:#888;
+                                    margin-top:4px;
+                                "
+                            >
+                                UPI ID not added
+                            </small>
+                            `
+                    }
+
+                </div>
+
+            `;
+
+
+            settlement.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   REAL UPI INTENT
+===================================================== */
+
+function payViaUPI(
+    upiId,
+    receiverName,
+    amount
+) {
+
+    if (!upiId) {
+
+        alert(
+            "This member has not added a UPI ID yet."
+        );
+
+        return;
+
+    }
+
+
+    const upiUrl =
+        "upi://pay" +
+        "?pa=" +
+        encodeURIComponent(
+            upiId
+        ) +
+        "&pn=" +
+        encodeURIComponent(
+            receiverName
+        ) +
+        "&am=" +
+        encodeURIComponent(
+            Number(amount).toFixed(2)
+        ) +
+        "&cu=INR" +
+        "&tn=" +
+        encodeURIComponent(
+            "Sahayatri Trip Expense"
+        );
+
+
+    window.location.href =
+        upiUrl;
+
+}
+
+
+/* =====================================================
+   BOT WELCOME MESSAGE
+===================================================== */
+
+function updateBotWelcome() {
+
+    const chat =
+        document.getElementById(
+            "chatBox"
+        );
+
+
+    if (
+        !chat ||
+        !currentTrip ||
+        !summary
+    ) {
+
+        return;
+
+    }
+
+
+    const total =
+        Number(
+            summary.total || 0
+        );
+
+
+    const share =
+        Number(
+            summary.equalShare || 0
+        );
+
+
+    const memberCount =
+        members.length;
+
+
+    chat.innerHTML = `
+
+        <div class="message bot-message">
+
+            🤖 <strong>TripBot:</strong>
+
+            Hi! 👋 I am TripBot for your
+            ${escapeHtml(
+                currentTrip.location
+            )} trip.
+
+            Your group currently has
+            <strong>
+                ${memberCount}
+                ${
+                    memberCount === 1
+                        ? "member"
+                        : "members"
+                }
+            </strong>.
+
+            Total expense is
+            <strong>
+                ₹${total.toLocaleString(
+                    "en-IN",
+                    {
+                        maximumFractionDigits: 2
+                    }
+                )}
+            </strong>
+
+            and equal share is
+            <strong>
+                ₹${share.toLocaleString(
+                    "en-IN",
+                    {
+                        maximumFractionDigits: 2
+                    }
+                )}
+            </strong>.
+
+            <br><br>
+
+            You can ask me:
+
+            <br>
+
+            • "What's the total?"
+
+            <br>
+
+            • "What's my share?"
+
+            <br>
+
+            • "Who paid?"
+
+            <br>
+
+            • "Show split"
+
+            <br>
+
+            • "Who are the members?"
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   BOT SEND MESSAGE
+===================================================== */
+
+function sendMessage() {
+
+    const input =
+        document.getElementById(
+            "chatInput"
+        );
+
+
+    const message =
+        input.value.trim();
+
+
+    if (!message) {
+        return;
+    }
+
+
+    addUserMessage(
+        message
+    );
+
+
+    input.value = "";
+
+
+    setTimeout(
+        function() {
+
+            answerBot(
+                message
+            );
+
+        },
+        300
+    );
+
+}
+
+
+/* =====================================================
+   BOT ANSWER USING ACTUAL DATA
+===================================================== */
+
+function answerBot(
+    message
+) {
+
+    const lower =
+        message.toLowerCase();
+
+
+    /* ================= TOTAL ================= */
+
+    if (
+        lower.includes("total")
+    ) {
+
+        const total =
+            summary
+                ? Number(
+                    summary.total || 0
+                )
+                : 0;
+
+
+        addBotMessage(
+            "The current total trip expense is ₹" +
+            total.toLocaleString(
+                "en-IN",
+                {
+                    maximumFractionDigits: 2
+                }
+            ) +
+            "."
+        );
+
+
+        return;
+
+    }
+
+
+    /* ================= SHARE ================= */
+
+    if (
+        lower.includes("share") ||
+        lower.includes("my share") ||
+        lower.includes("per person") ||
+        lower.includes("equal share")
+    ) {
+
+        const share =
+            summary
+                ? Number(
+                    summary.equalShare || 0
+                )
+                : 0;
+
+
+        addBotMessage(
+            "The equal share per member is ₹" +
+            share.toLocaleString(
+                "en-IN",
+                {
+                    maximumFractionDigits: 2
+                }
+            ) +
+            "."
+        );
+
+
+        return;
+
+    }
+
+
+    /* ================= WHO PAID ================= */
+
+    if (
+        lower.includes("who paid") ||
+        lower.includes("paid what") ||
+        lower.includes("payments") ||
+        lower.includes("who has paid")
+    ) {
+
+        if (!members.length) {
+
+            addBotMessage(
+                "No group members have been added yet."
+            );
+
+            return;
+
+        }
+
+
+        const totals = {};
+
+
+        members.forEach(
+            function(member) {
+
+                totals[member.id] =
+                    0;
+
+            }
+        );
+
+
+        expenses.forEach(
+            function(expense) {
+
+                const memberId =
+                    Number(
+                        expense.paidByMemberId
+                    );
+
+
+                if (
+                    totals[memberId] !== undefined
+                ) {
+
+                    totals[memberId] +=
+                        Number(
+                            expense.amount || 0
+                        );
+
+                }
+
+            }
+        );
+
+
+        const paymentText =
+            members
+                .map(
+                    function(member) {
+
+                        return (
+                            member.name +
+                            " paid ₹" +
+                            Number(
+                                totals[
+                                    member.id
+                                ] || 0
+                            ).toLocaleString(
+                                "en-IN",
+                                {
+                                    maximumFractionDigits: 2
+                                }
+                            )
+                        );
+
+                    }
+                )
+                .join(" • ");
+
+
+        addBotMessage(
+            "Here is the current payment summary: " +
+            paymentText +
+            "."
+        );
+
+
+        return;
+
+    }
+
+
+    /* ================= SPLIT ================= */
+
+    if (
+        lower.includes("split") ||
+        lower.includes("settlement") ||
+        lower.includes("who owes") ||
+        lower.includes("owe")
+    ) {
+
+        if (!summary) {
+
+            addBotMessage(
+                "I am still loading the latest settlement."
+            );
+
+            return;
+
+        }
+
+
+        const settlements =
+            summary.settlements || [];
+
+
+        if (!settlements.length) {
+
+            addBotMessage(
+                "Everyone is currently settled 🎉."
+            );
+
+            return;
+
+        }
+
+
+        const settlementText =
+            settlements
+                .map(
+                    function(item) {
+
+                        return (
+                            item.fromName +
+                            " pays " +
+                            item.toName +
+                            " ₹" +
+                            Number(
+                                item.amount || 0
+                            ).toLocaleString(
+                                "en-IN",
+                                {
+                                    maximumFractionDigits: 2
+                                }
+                            )
+                        );
+
+                    }
+                )
+                .join(" • ");
+
+
+        addBotMessage(
+            "Current settlement: " +
+            settlementText +
+            "."
+        );
+
+
+        return;
+
+    }
+
+
+    /* ================= MEMBERS ================= */
+
+    if (
+        lower.includes("members") ||
+        lower.includes("friends") ||
+        lower.includes("who are")
+    ) {
+
+        if (!members.length) {
+
+            addBotMessage(
+                "No group members have been added yet."
+            );
+
+            return;
+
+        }
+
+
+        const names =
+            members
+                .map(
+                    function(member) {
+
+                        return member.name;
+
+                    }
+                )
+                .join(", ");
+
+
+        addBotMessage(
+            "Current trip members are: " +
+            names +
+            "."
+        );
+
+
+        return;
+
+    }
+
+
+    /* ================= EXPENSE HISTORY ================= */
+
+    if (
+        lower.includes("expense") ||
+        lower.includes("history") ||
+        lower.includes("spent")
+    ) {
+
+        if (!expenses.length) {
+
+            addBotMessage(
+                "No expenses have been added yet."
+            );
+
+            return;
+
+        }
+
+
+        const expenseText =
+            expenses
+                .map(
+                    function(expense) {
+
+                        const payer =
+                            members.find(
+                                function(member) {
+
+                                    return (
+                                        Number(
+                                            member.id
+                                        ) ===
+                                        Number(
+                                            expense.paidByMemberId
+                                        )
+                                    );
+
+                                }
+                            );
+
+
+                        const payerName =
+                            payer
+                                ? payer.name
+                                : "Unknown";
+
+
+                        return (
+                            expense.description +
+                            " ₹" +
+                            Number(
+                                expense.amount
+                            ).toLocaleString(
+                                "en-IN",
+                                {
+                                    maximumFractionDigits: 2
+                                }
+                            ) +
+                            " paid by " +
+                            payerName
+                        );
+
+                    }
+                )
+                .join(" • ");
+
+
+        addBotMessage(
+            "Expense history: " +
+            expenseText +
+            "."
+        );
+
+
+        return;
+
+    }
+
+
+    /* ================= HELP ================= */
+
+    addBotMessage(
+        "I can help with your current trip budget. Try: 'What's the total?', 'What's my share?', 'Who paid?', 'Show split', 'Who are the members?' or 'Show expenses'."
+    );
+
+}
+
+
+/* =====================================================
+   ADD USER MESSAGE
+===================================================== */
+
+function addUserMessage(
+    text
+) {
+
+    const chat =
+        document.getElementById(
+            "chatBox"
+        );
+
+
+    const message =
+        document.createElement(
+            "div"
+        );
+
+
+    message.className =
+        "message user-message";
+
+
+    message.innerText =
+        text;
+
+
+    chat.appendChild(
+        message
+    );
+
+
+    chat.scrollTop =
+        chat.scrollHeight;
+
+}
+
+
+/* =====================================================
+   ADD BOT MESSAGE
+===================================================== */
+
+function addBotMessage(
+    text
+) {
+
+    const chat =
+        document.getElementById(
+            "chatBox"
+        );
+
+
+    const message =
+        document.createElement(
+            "div"
+        );
+
+
+    message.className =
+        "message bot-message";
+
+
+    message.innerHTML =
+        "🤖 <strong>TripBot:</strong> " +
+        escapeHtml(text);
+
+
+    chat.appendChild(
+        message
+    );
+
+
+    chat.scrollTop =
+        chat.scrollHeight;
+
+}
+
+
+/* =====================================================
+   ENTER KEY
+===================================================== */
+
+function handleEnter(
+    event
+) {
+
+    if (
+        event.key === "Enter"
+    ) {
+
+        sendMessage();
+
+    }
+
+}
+
+
+/* =====================================================
+   HTML ESCAPE
+===================================================== */
+
+function escapeHtml(
+    text
+) {
+
+    if (
+        text === null ||
+        text === undefined
+    ) {
+
+        return "";
+
+    }
+
+
+    return String(text)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =====================================================
+   START APPLICATION
+===================================================== */
+
+loadCurrentTrip();
+
+</script>
+
+
+</body>
+
+</html>
