@@ -134,7 +134,7 @@
 
                 const response =
                     await fetch(
-                        "http://localhost:8080/api/trips/user/" +
+                        "https://sahayatri-ai-trip-planner.onrender.com/api/trips/user/" +
                         encodeURIComponent(email)
                     );
 
@@ -351,7 +351,7 @@
 
                 const response =
                     await fetch(
-                        "http://localhost:8080/api/trips/user/" +
+                        "https://sahayatri-ai-trip-planner.onrender.com/api/trips/user/" +
                         encodeURIComponent(email)
                     );
 
@@ -380,7 +380,7 @@
 
 
                 // Restore trip data
-                
+
 
                 // Save current trip ID for Budget Splitter
 
@@ -388,6 +388,7 @@
                     "savedTripId",
                     String(selectedTrip.id)
                 );
+
 
                 localStorage.setItem(
                     "tripResponse",
@@ -467,7 +468,7 @@
 
                 const response =
                     await fetch(
-                        "http://localhost:8080/api/trips/" +
+                        "https://sahayatri-ai-trip-planner.onrender.com/api/trips/" +
                         id,
                         {
                             method: "DELETE"
