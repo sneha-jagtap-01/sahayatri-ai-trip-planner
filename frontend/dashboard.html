@@ -1069,19 +1069,22 @@
                 );
 
             if (
-                tripData.mapUrl &&
-                tripData.mapUrl !== ""
-            ) {
+    tripData.mapUrl &&
+    tripData.mapUrl !== ""
+) {
 
-                googleMap.src =
-                    tripData.mapUrl;
+    googleMap.src = tripData.mapUrl;
+    googleMap.style.display = "block";
 
-            } else {
+} else {
 
-                googleMap.style.display =
-                    "none";
+    googleMap.style.display = "block";
+    googleMap.src =
+        "https://www.google.com/maps?q=" +
+        encodeURIComponent(tripData.location) +
+        "&output=embed";
 
-            }
+}
 
 
             /* =========================================
@@ -1421,7 +1424,7 @@
                     savedPreferences.join(",");
 
                 const apiUrl =
-                    `http://localhost:8080/api/trip` +
+    `https://sahayatri-ai-trip-planner.onrender.com/api/trip` +
                     `?location=${encodeURIComponent(location)}` +
                     `&days=${days}` +
                     `&budget=${budget}` +
@@ -1553,8 +1556,8 @@
                 try {
 
                     const response =
-                        await fetch(
-                            "http://localhost:8080/api/trips/save",
+    await fetch(
+        "https://sahayatri-ai-trip-planner.onrender.com/api/trips/save",
                             {
 
                                 method: "POST",
