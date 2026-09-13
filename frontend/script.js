@@ -122,7 +122,7 @@ function generateTrip() {
         selectedPreferences.join(",");
 
     const apiUrl =
-        `http://localhost:8080/api/trip` +
+        `https://sahayatri-ai-trip-planner.onrender.com/api/trip` +
         `?location=${encodeURIComponent(location)}` +
         `&days=${days}` +
         `&budget=${budget}` +
